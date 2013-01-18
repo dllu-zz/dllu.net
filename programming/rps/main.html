@@ -1,0 +1,64 @@
+<section id="rps">
+  <h1>Rock Paper Scissors algorithms</h1>
+  <p>This page describes some approaches to programming a strong Rock Paper Scissors engine. You may also be interested in the <a href="http://www.rpscontest.com" target="_blank">Rock Paper Scissors Programming Competition</a>.</p>
+  <p>It is well known that it is impossible to consistently beat a random player. Then why bother? As it turns out, a random strategy will only win 50% of its matches. However, a good predicting algorithm can exploit patterns in not-so-random opponents (including humans) and beat them more often. In fact, some of the strongest engines on the <a href="http://www.rpscontest.com/leaderboard" target="_blank">leaderboard</a> have a win rate of over 80%!</p>
+</section>
+<section id="strat">
+  <h1>Strategies</h1>
+  <p>Here are some basic strategies, roughly in ascending order of strength. But as you shall soon see, metastrategies are also needed to be competitive at the top of the leaderboard.</p>
+  
+  <h2>Fixed move</h2>
+  <p>This algorithm plays a fixed move, that is, either Rock, Paper, or Scissors. An example is <a href="http://www.rpscontest.com/entry/13004" target="_blank"><i>Always Rock</i></a>.</p>
+  
+  <h2>Frequency counting</h2>
+  <p>This algorithm counts the previous moves played to determine which one the opponent plays most often. Essentially, it keeps the "score" for each of Rock, Paper, and Scissors, and the respective score is incremented each time the opponent plays a move. Such an algorithm would easily defeat fixed move algorithms. An example is <a href="http://www.rpscontest.com/entry/33003" target="_blank"><i>The Frequentist</i></a>.</p>
+  <p>However, there are more sophisticated variants. Notably, <a href="http://www.rpscontest.com/entry/13015" target="_blank"><i>Boltzmann Counter</i></a> has a decaying score instead, so that it is more affected by recent outcomes than past ones; furthermore, it also reduces the score of the move that would have lost. So, for example, if the opponent played rock, the score for paper would increase, but the score for scissors would decrease.</p>
+  
+  <h2>Rotation</h2>
+  <p>This algorithm always <i>rotates</i> the last input. For example, it might rotate the input by 1, i.e., by beating the opponent's last move every time. Or it might rotate it by 2, i.e., by losing to the opponent's last move every time. Or trivially it might just play the opponent's last move. An example of such an algorithm is <a href="http://www.rpscontest.com/entry/32004" target="_blank"><i>Beat Last Input</i></a>. A rotation by <i>n</i> always beats a rotation by <i>n-1</i>.</p>
+  <p style="text-align:center; padding-bottom:0px;">R &raquo; 0 = R, &nbsp; R &raquo; 1 = P, &nbsp; R &raquo; 2 = S</p>
+  <p style="text-align:center; padding-bottom:0px;">P &raquo; 0 = P, &nbsp; P &raquo; 1 = S, &nbsp; P &raquo; 2 = R</p>
+  <p style="text-align:center;">S &raquo; 0 = S, &nbsp; S &raquo; 1 = R, &nbsp; S &raquo; 2 = P</p>
+  <p>There are only three possible rotations, because a rotation by 3 is the same as a rotation by 0 - i.e., we are working in modulo 3.</p>
+  
+  <h2>Anti-rotation</h2>
+  <p>This algorithm assumes that the opponent is one of the three possible Rotation algorithms. It calculates the rotation needed to get the opponent's last move from its own move before that, and determines the rotation that the opponent must have used. Then, it beats this rotation of its own last move. For example, if the opponent rotated the last move by 1, this algorithm would rotate its own last move by 2 just to one-up the opponent. An example of such an algorithm is <a href="http://www.rpscontest.com/entry/32016" target="_blank"><i>Probably not very strong 3.3</i></a>.</p>
+  
+  <h2>History string matching</h2>
+  <p>This is one of the most common strategies amongst the top performing bots. The program keeps a string containing all the moves made so far, appending one character for each turn. This character can either be the opponent's move made during the turn, or the program's own move during the turn, or one of the nine possible combinations thereof. Then it uses a <a href="http://en.wikipedia.org/wiki/String_searching_algorithm" target="_blank">substring matching algorithm</a> to determine a previous time the last sequence moves have been played. Then, the program plays the move that counters what the opponent played after that sequence, in the hopes that the opponent would play the same move again. Typically, in Python, one may use the function <span style="font-family:courier new, monospace;">rfind</span> for this purpose. For example, if the history looked like this:</p>
+  <p style="text-align:center; font-family:courier new, monospace;">RPSRRPRSP<span style="color:#f00;">RPSRPR</span><span style="color:#090;">S</span>PSPSPR<span style="color:#f00;">RPSRPR</span></p>
+  <p>then you might guess the next character to be <span style="font-family:courier new, monospace;">S</span>. Clearly, the longer the match, the more likely this prediction will be correct (it is trivial to find a match of length 1). A program that uses this algorithm is <a href="http://www.rpscontest.com/entry/70039" target="_blank"><i>rfind</i></a>.</p>
+  <p>Some history matching algorithms use the most recent match, by using <span style="font-family:courier new, monospace;">rfind</span>, but there are also some that find the earliest match using <span style="font-family:courier new, monospace;">find</span>. Moreover, some of them use a naive implementation of string search, and take the weighted sum of all matches in history.</p>
+</section>
+<section id="metastrat">
+  <h1>Metastrategies</h1>
+  <p>Each of the previously discussed strategies has a counter. It is easy to counter any of them, because they all behave predictably. But even a pure counter can be countered by rotating the outcome once more. In fact, for each strategy, there are six possible ways of using it. Such <i>metastrategies</i> were used in Dan Egnor's excellent <a href="http://www.ofb.net/~egnor/iocaine.html" target="_blank"><i>Iocaine Powder</i></a> program.</p>
+  <ul>
+    <li><b>P0: naive application - </b>Play the strategy naively.</li>
+    <li><b>P'0: beat P0 - </b>Exchange the position of you and your opponent. Then, play to beat the output of the naive strategy in your opponent's shoes.</li>
+    <li><b>P1: beat P'0 - </b>P1 = P0 &raquo; 2. That is, rotate P0 by two; e.g., if P0 plays rock, then P'0 would play rock &raquo 1 = paper to beat it. But P1 would play rock &raquo; 2 = scissors and beat P'0.</li>
+    <li><b>P'1: beat P1 - </b>P'1 = P'0 &raquo; 2, in much the same way that P1 beats P'0.</li>
+    <li><b>P2: beat P'1 - </b>P2 = P1 &raquo; 2.</li>
+    <li><b>P'2: beat P2 - </b>P'2 = P'1 &raquo; 2.</li>
+  </ul>
+  <p>And that's it. Notice that if you rotate P2 once more, you simply end up with P0 due to the modular nature of Rock Paper Scissors.</p>
+  
+  <h2>Strategy selection</h2>
+  <p>If each strategy has six possible metastrategies, how do we choose which one to use? What if we also have more than one strategy to begin with? The way to do this is to select based on past performance. If a strategy has been successful, we use that one. If a strategy always loses, we don't use it. Here are some ways to implement this:</p>
+  <ul>
+    <li><b>Naive scoring:</b> A number is stored for each predictor. After each round, if the predictor successfully predicted the opponent's move, its score is incremented by one. If the prediction loses to the opponent's move, its score is decremented by one. An example is <a href="http://www.rpscontest.com/entry/33026" target="_blank"><i>Variable Turbine Geometry</i></a>.</li>
+    <li><b>Decayed scoring:</b> This works just like naive scoring, except all scores are also multiplied by a number between 0 and 1 after each round (usually around 0.9), so that it gradually "forgets" about the performance of each predictor a long time ago. Thus, if the opponent occasionally switches strategies, this should be able to cope. An example is <a href="http://www.rpscontest.com/entry/113003" target="_blank"><i>DNA werfer 2</i></a>.</li>
+    <li><b>Drop switch:</b> Just like naive scoring, except if a predictor loses even once, its score is reset to zero. This allows for much faster response to opponents with switching strategies than decayed scoring, but can be vulnerable if the opponent adds some sort of noise (e.g. by playing a random move every tenth move). An example is <a href="http://www.rpscontest.com/entry/101034" target="_blank"><i>DNA werfer 5 M0</i></a>.</li>
+    <li><b>Random drop switch:</b> Just like drop switch, except the predictor score is only reset to zero randomly with a probability of, say, 0.5. An example is <a href="http://www.rpscontest.com/entry/159004" target="_blank"><i>Random Drop-Switch</i></a>.</li>
+  </ul>
+  <p>Of course, the predictor with the highest score is chosen to be used. There are also some other selectors, such as resetting the score to zero whenever the predictor does not win (i.e., even when it draws). Some other selectors work like naive scoring or decayed scoring, but also decrement the score by a small value on a draw. It is interesting to note that the frequency counting strategy is in fact simply a fixed move strategy coupled with a naive scoring selector.</p>
+  <p>Notice that some of the basic strategies are in fact simpler strategies with a metastrategy. For example, Frequency Counting is simply the Fixed Move strategy with a naive scoring: it chooses between the Fixed Move strategies (always play rock, always play paper, or always play scissors) based on which one was the most successful.</p>
+  
+  <h2>Selector selection</h2>
+  <p>With so many strategy selection methods to choose from, how do we choose which one is the best? Hence, we have another layer: selector selection.</p>
+  <p>These are implemented in the same way as before, that is, with P0, P'0, P1, P'1, P2, and P'2. Examples of programs with selector selection are <a href="http://www.rpscontest.com/entry/203004" target="_blank"><i>Centrifugal Bumblepuppy 13</i></a> and <a href="http://www.rpscontest.com/entry/154030" target="_blank"><i>switching18</i></a>.</p>
+</section>
+<section id="def">
+  <h1>Defense mechanisms</h1>
+  <p>It is a well-known fact that a truly random strategy cannot possibly lose consistently. Hence, it is useful to switch to a random strategy once the algorithm detects that it is losing. One way to do this is to simply include the random strategy as one of the predictors alongside other strategies like history matching. Then if the other strategies all start losing, they would all have pretty negative scores, except the random one, which will presumably have a score of close to zero. In this event, the selector would choose the random strategy over the other strategies and hopefully avoid a terrible loss.</p>
+</section>

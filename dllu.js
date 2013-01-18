@@ -77,4 +77,5 @@ evaluatePath = function() {
         $(contentChildren[j]).remove();
     }
     $('#breadcrumbs a').click(bindNavigationLinks);
+    $('title').text('dllu/'+path);
 };
