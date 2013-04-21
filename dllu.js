@@ -1,50 +1,88 @@
+// dllu.js by dllu
+// You are free to copy this code without attribution, but this is very bad code. Use at your own risk.
+
+var lolcache = {};
+var imgcache = {};
+var loading = 0;
+var working_directory;
+var bad = false;
 
 $(document).ready( function() {
     $('#javascript-alert').remove();
     window.onhashchange = evaluatePath;
-    $('#dllu').children('a').click(bindNavigationLinks);
     evaluatePath();
 });
 
 
-renderContent = function(data, contentInside) {
+renderContent = function(data, contentInside, p) {
     contentInside.html(data);
-    contentInside.find('.nav a, .portfolio a').click(bindNavigationLinks);
     contentInside.find('a').each(function() {
-        if(window.location.hash.indexOf($(this).attr('href')) !== -1) $(this).addClass('selected');
+        if(!p) {
+            if(window.location.hash.indexOf($(this).attr('href')) !== -1) $(this).addClass('selected');
+        } else {
+            if(('#' + p).indexOf($(this).attr('href')) !== -1) $(this).addClass('selected');
+        }
     });
+    loading--;
+    if(loading == 0) {
+        $('#content').removeClass('loading');
+        if(p===undefined) {
+            lolcache[working_directory] = $('#content').html();
+            scout();
+        } else {
+            lolcache[p] = $('#invisible').html();
+            $('#invisible').html('');
+        }
+    }
 };
-loadContent = function(path, contentInside) {
+loadContent = function(path, contentInside, p) {
     var is_undefined = contentInside === undefined;
     if(is_undefined) {
         contentInside = $('<div>').addClass('content-inside');
-        $('#content').append(contentInside);
+        if(p===undefined) {
+            $('#content').append(contentInside);
+        } else {
+            $('#invisible').append(contentInside);
+        }
     }
+    loading++;
     $.get(path, function(data) {
-        renderContent(data, contentInside);
+        renderContent(data, contentInside, p);
     }, 'html').error(function(data, textStatus, jqXHR) {
-        renderContent('<section><h1>Error: ' + jqXHR + '</h1><p>' + textStatus + '</p></section>', contentInside);
+        renderContent('<section><h1>Error: ' + jqXHR + '</h1><p>' + textStatus + '</p></section>', contentInside, p);
     });
 };
 
-bindNavigationLinks = function(e) {
-    //e.preventDefault;
-    //console.log($(this).attr('href'));
-    //window.location.hash = $(this).attr('href');
-    //evaluatePath();
-};
-
 evaluatePath = function() {
-    var working_directory = '';
+    bad = false;
+    working_directory = '';
     if(window.location.hash.indexOf('#') !== -1) {
         working_directory = window.location.hash.split('#')[1];
     }
     var working_directory_split = working_directory.split('/');
 
     var i = working_directory_split.length;
+
     console.log(working_directory_split, i);
     if(working_directory_split[i-1] === '' || working_directory_split[i-1] === undefined) i--; //remove effect of trailing slash
     if(working_directory === '') i = 0;
+    if(working_directory_split[0] === 'DEBUG') {
+        debug();
+        return;
+    }
+
+    if(lolcache[working_directory] !== undefined) {
+        $('#content').html(lolcache[working_directory]);
+        $('#breadcrumbs').html('');
+        for(var j=1; j<=i; j++) {
+            path += working_directory_split[j-1] + '/';
+            $('#breadcrumbs').append($('<a>').text(working_directory_split[j-1]).attr('href', '#' + path)).append(' / ');
+        }
+        $('title').text('dllu/'+working_directory);
+        scout();
+        return;
+    }
+    $('#content').addClass('loading');
 
     var firstContentInside = $('#content').children('.content-inside')[0];
     if(firstContentInside !== undefined) {
@@ -76,6 +114,78 @@ evaluatePath = function() {
     for(var j=i+1; j<iterationLength; j++){
         $(contentChildren[j]).remove();
     }
-    $('#breadcrumbs a').click(bindNavigationLinks);
-    $('title').text('dllu/'+path);
+    $('title').text('dllu/'+working_directory);
+};
+
+scout = function() {
+    var zxcv = false;
+    var qwer = false;
+    $('#content a').each(function() {
+        var $this = $(this);
+        if($this.attr('href')[0] === '#') {
+            if(!loading) {
+                qwer = true;
+                if(cache_populate($this.attr('href'))) {
+                    zxcv = true;
+                }
+            }
+        }
+    });
+    if(!zxcv && qwer) {
+        bad = true;
+    } else {
+        setTimeout(scout, 500);
+    }
+};
+
+cache_populate = function(path) {
+    if(path.indexOf('#') !== -1) {
+        path = path.split('#')[1];
+    }
+    var path_split = path.split('/');
+    if(lolcache[path] !== undefined) {
+        return false;
+    }
+
+    var i = path_split.length;
+    console.log('SCOUTING', path_split, i);
+    if(path_split[i-1] === '' || path_split[i-1] === undefined) i--; //remove effect of trailing slash
+    if(path === '') i = 0;
+
+    var firstContentInside = $('#invisible').children('.content-inside')[0];
+    if(firstContentInside !== undefined) {
+        firstContentInside = $(firstContentInside);
+    }
+    if(i === 0) {
+        loadContent('main.html', firstContentInside, path);
+    } else {
+        loadContent('nav.html', firstContentInside, path);
+    }
+    var p = '';
+    var contentChildren = $('#invisible').children('.content-inside');
+    var iterationLength = contentChildren.length;
+    for(var j=1; j<=i; j++) {
+        p += path_split[j-1] + '/';
+        var contentInside = contentChildren[j] === undefined? undefined : $(contentChildren[j])
+        if(j<i) {
+            console.log('/branch', p);
+            loadContent(p + 'nav.html', contentInside, path);
+        } else {
+            console.log('/node', p);
+            loadContent(p + 'main.html', contentInside, path);
+        }
+    }
+    console.log('SCOUTING', i, iterationLength);
+    for(var j=i+1; j<iterationLength; j++){
+        $(contentChildren[j]).remove();
+    }
+    return true;
+};
+
+debug = function() {
+    $('#content').html('');
+    $.each(lolcache, function(k, v) {
+        $('#content').append($('<div class="content-inside">').append($('<section>').append(
+            $('<h1>').text(k)).append($('<pre>').append('<code>').text(v))));
+    });
 };
