@@ -72,6 +72,7 @@ evaluatePath = function() {
     }
 
     if(lolcache[working_directory] !== undefined) {
+        var path = '';
         $('#content').html(lolcache[working_directory]);
         $('#breadcrumbs').html('');
         for(var j=1; j<=i; j++) {
