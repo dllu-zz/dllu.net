@@ -1,0 +1,11 @@
+New website and other new things.
+=========
+I made a new website! After being in beta for 8 months, I'm tired of having it be in beta and have replaced my original site with the new one. Unfortunately, this website does not work on browsers without Javascript. I will generate [the static version](http://static.dllu.net) whenever I think of an elegant way of doing so.
+
+The new site has several interesting features:
+
+* Pages are HTML snippets that are loaded via AJAX.
+* The site Javascript has a way to sort of prefetch snippets, so navigating in this site should be fairly fast.
+* The blog engine is a simple Python script which uses [Markdown for Python](https://pypi.python.org/pypi/Markdown) to convert [markdown](http://daringfireball.net/projects/markdown/) text files into HTML snippets of the correct format.
+
+Today, I also made a new [custom homepage for new tabs](wob2) to replace [the old version](wob). The idea is that now all sites and search engines are easily accessed by pressing the respective keys on the left side of a QWERTY keyboard, which should save about 0.5 seconds every time I open a new tab. There is also a huge CSS3 clock to help keep track of time and the weather indicator has been enlarged.

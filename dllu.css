@@ -117,7 +117,6 @@ a:hover {
 
 #content>.content-inside>.portfolio {
     background-color: #f9f9f9;
-    color: #fdfdfd;
     text-align: center;
 }
 #content>.content-inside>.portfolio a {
@@ -126,19 +125,37 @@ a:hover {
     line-height: 330px;
     vertical-align: middle;
 }
-#content>.content-inside>.portfolio .portfoliotile {
+#content>.content-inside>.portfolio a>.portfoliotile {
     height: 300px;
     width: 300px;
-    box-shadow: 0px 0px 8px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
     border: 1px solid #888;
     overflow: hidden;
     transition: all 0.1s ease-in-out;
     -moz-transition: all 0.1s ease-in-out;
     -webkit-transition: all 0.1s ease-in-out;
 }
-#content>.content-inside>.portfolio .portfoliotile img {
+#content>.content-inside>.portfolio a>.portfoliotile img {
     border: 0;
 }
+
+#content>.content-inside>.portfolio a>.portfoliotile.text {
+    display: table;
+    line-height: 40px;
+    font-size: 40px;
+    color: #333;
+    text-decoration: none;
+    overflow-x: auto;
+    background-color: #fdfdfd;
+}
+
+#content>.content-inside>.portfolio a>.portfoliotile.text>p {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 20px;
+}
+
+
 #content>.content-inside>.portfolio a>.caption {
     text-align: center;
     height: 30px;
@@ -184,8 +201,8 @@ a:hover {
 #content>.content-inside>section>p,
 #content>.content-inside>section>h1,
 #content>.content-inside>section>h2,
-#content>.content-inside>section>h3,
-#content>.content-inside>section li  {
+#content>.content-inside>section>h3, 
+#content>.content-inside>section>ul {
     display: block;
     max-width: 1080px;
     width: 80%;
@@ -208,6 +225,10 @@ a:hover {
     font-style: italic;
     color: #555;
 }
+#content>.content-inside>section ul li {
+    display: list-item;
+    padding: 5px 0px 5px 0px;
+}
 
 #content>.content-inside>section pre {
     display: block;
@@ -224,5 +245,3 @@ a:hover {
     margin: 0 auto;
     padding: 5px 60px 16px 60px;
 }
-
-/* gallery */
