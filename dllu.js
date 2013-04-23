@@ -1,5 +1,6 @@
 // dllu.js by dllu
 // You are free to copy this code without attribution, but this is very bad code. Use at your own risk.
+// I am not responsible for any grievous injury or disease sustained by viewing this code.
 
 var lolcache = {};
 var imgcache = {};
@@ -8,6 +9,10 @@ var working_directory;
 var bad = false;
 
 $(document).ready( function() {
+    if(false) {
+        console = {log: function() {}};
+    }
+    working_directory = '';
     $('#javascript-alert').remove();
     window.onhashchange = evaluatePath;
     evaluatePath();
@@ -59,6 +64,7 @@ evaluatePath = function() {
     if(window.location.hash.indexOf('#') !== -1) {
         working_directory = window.location.hash.split('#')[1];
     }
+    working_directory = working_directory.replace(/\/+$/, "");
     var working_directory_split = working_directory.split('/');
 
     var i = working_directory_split.length;
@@ -143,6 +149,7 @@ cache_populate = function(path) {
     if(path.indexOf('#') !== -1) {
         path = path.split('#')[1];
     }
+    path = path.replace(/\/+$/, "");
     var path_split = path.split('/');
     if(lolcache[path] !== undefined) {
         return false;
