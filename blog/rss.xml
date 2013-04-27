@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+	<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+		<channel>
+			<atom:link href="http://dllu.net/blog/rss.xml" rel="self" type="application/rss+xml" />
+			<title>Daniel Lu's Blog</title>
+			<link>http://dllu.net/blog</link>
+			<description>A blog of some things.</description>
+			<language>en-ca</language>
+			<lastBuildDate>Sat, 27 Apr 2013 15:51:36 -0700</lastBuildDate>
+			<generator>dllu secret blog engine</generator>
+			
+			<item>
+				<title>Battlestation operational. Also, RSS feed.</title>
+				<link>http://dllu.net/#blog/y2013m04d27</link>
+				<description>Blog post of 27 April 2013</description>
+				<pubDate>27 Apr 2013 00:00:00 +0000</pubDate>
+				<guid isPermaLink="true">http://dllu.net/blog/y2013m04d27/main.html</guid>
+			</item>
+			<item>
+				<title>New website and other new things.</title>
+				<link>http://dllu.net/#blog/y2013m04d22</link>
+				<description>Blog post of 22 April 2013</description>
+				<pubDate>22 Apr 2013 00:00:00 +0000</pubDate>
+				<guid isPermaLink="true">http://dllu.net/blog/y2013m04d22/main.html</guid>
+			</item>
+		</channel>
+	</rss>

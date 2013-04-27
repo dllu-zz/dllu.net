@@ -1,0 +1,5 @@
+Battlestation operational. Also, RSS feed.
+=========
+Recently I moved my desktop computer to my bedroom in my parents' house, where I'll be staying for the summer. Consequently my internet speed has gone from [750 Mbps](http://www.speedtest.net/result/2474736716.png) in UBC to a mediocre ADSL connection that varies from [one hundred and fifty times worse](http://www.speedtest.net/result/2673834143.png) to [one thousand times worse](http://www.speedtest.net/result/2673788634.png) at our house in Abbotsford.
+
+I have also implemented an [RSS feed](blog/rss.xml) for my blog.

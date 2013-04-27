@@ -9,7 +9,7 @@ var working_directory;
 var bad = false;
 
 $(document).ready( function() {
-    if(false) {
+    if(true) {
         console = {log: function() {}};
     }
     working_directory = '';

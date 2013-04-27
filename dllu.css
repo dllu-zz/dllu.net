@@ -43,6 +43,22 @@ a:hover {
     margin-top: 10px;
 }
 
+#content a#rss {
+    display: block;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    top: 0px;
+    right: 0px;
+    background-image: url('blog/rss.svg');
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+}
+#content a#rss:hover {
+    background-position: bottom;
+}
+
 #footer {
     text-align: center;
     color: #888;
