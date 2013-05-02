@@ -6,9 +6,16 @@
 			<link>http://dllu.net/blog</link>
 			<description>A blog of some things.</description>
 			<language>en-ca</language>
-			<lastBuildDate>Sat, 27 Apr 2013 15:51:36 -0700</lastBuildDate>
+			<lastBuildDate>Wed, 01 May 2013 17:16:49 -0700</lastBuildDate>
 			<generator>dllu secret blog engine</generator>
 			
+			<item>
+				<title>Fitting convex pentagons in a triangle.</title>
+				<link>http://dllu.net/#blog/y2013m05d01</link>
+				<description>Blog post of 1 May 2013</description>
+				<pubDate>01 May 2013 00:00:00 +0000</pubDate>
+				<guid isPermaLink="true">http://dllu.net/blog/y2013m05d01/main.html</guid>
+			</item>
 			<item>
 				<title>Battlestation operational. Also, RSS feed.</title>
 				<link>http://dllu.net/#blog/y2013m04d27</link>

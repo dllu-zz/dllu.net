@@ -1,0 +1,71 @@
+Fitting convex pentagons in a triangle.
+=========
+In this problem, we want to fit the minimum number of convex pentagons in a triangle, without overlap, such that there is no overlap space. To minimally fill a polygon with convex pentagons is equivalent to dividing the polygon into convex pentagons. For conciseness, we shall use the abbreviation **&#x2b20;** to denote "convex pentagon".
+
+Here's a _sketch_ of a proof that 9 is the minimum amount needed. It is not very rigorous, but is meant to give a rough idea of such a proof might be laid out.
+
+Claim 0: There exists an upper bound of 9 &#x2b20;s for the minimum solution.
+-------
+
+There exists such a solution as per the following figure:
+
+![Claim 0](blog/blog/triangle_claim0.svg)
+
+Claim 1: For any interior vertex, there must be at least 3 &#x2b20;s touching it.
+-------
+
+Otherwise, one of the polygons touching the vertex would not be convex.
+
+Claim 2: A concave polygon minimally filled with &#x2b20;s must require at least as many &#x2b20;s as a convex polygon with the same number of convex vertices.
+-------
+
+Suppose that we have a concave polygon that is filled with &#x2b20;s. We may "straighten out" an exterior concave vertex without affecting the convexity of the subpolygons inside. Note that the converse is not necessarily true: A polygon may be filled with fewer &#x2b20;s than a concave pentagon with the same number of convex vertices.
+
+**Claim 2a:** More generally, _a concave polygon must require at least as many &#x2b20;s as a concave polygon with the same number of convex vertices and fewer concave vertices._ This follows easily from the same logic by only "straightening out" some, but not all, of the exterior concave vertices.
+
+**Claim 2b:** Conversely, _if a convex polygon minimally filled with &#x2b20;s requires N_i &#x2b20;s touching the ith edge, it requires the same number of &#x2b20;s as a concave polygon with the same number of convex vertices and with fewer than or equal to N_i concave vertices between the ith convex vertex and the i+1th convex vertex._
+
+Claim 3: Each edge of the triangle minimally filled with &#x2b20;s must have more than one &#x2b20; touching it.
+-------
+
+Suppose that a &#x2b20; shares an entire edge with the triangle. From Claim 2, the leftover space must require at least as many &#x2b20;s as a triangle. Hence, there is always a better solution with one fewer pentagon than a solution containing a &#x2b20; sharing an edge with the triangle.
+
+![Claim 3](blog/blog/triangle_claim3.svg)
+
+Claim 4: We can without loss of generality assume that each vertex of a triangle minimally filled with &#x2b20;s touches only one &#x2b20;.
+-------
+
+This is equivalent to saying that we can without loss of generality assume that a &#x2b20; touching a vertex of the triangle shares two (and not one) edges with the triangle. From Claim 2a, the remaining region requires fewer than or equal number of &#x2b20;s to fill if we make this assumption.
+
+![Claim 4](blog/blog/triangle_claim4.svg)
+
+Note that we cannot generalise this to larger polygons... for example, a regular octagon can be divided minimally into 2 &#x2b20;s by cutting it from one vertex to the diametrically opposite vertex. The reason is that for larger polygons, multiple adjacent edges may touch only one convex pentagon, but that cannot happen with a triangle.
+
+Claim 5: A convex quadrilateral minimally filled with &#x2b20;s must have at least one edge with more than two &#x2b20;s touching it.
+-------
+
+**Case 1:** Suppose that we have a single &#x2b20; touching two adjacent edges of the quadrilateral, yielding a remainder region that is a triangle. By Claim 3 it is clear that there must exist edges with more than two &#x2b20;s touching it. The arrangement below, for example, cannot be minimal.
+
+![Claim 5.1](blog/blog/triangle_claim5a.svg)
+
+**Case 2:** Suppose that we have no such &#x2b20; that touches two adjacent edges of the quadrilateral. Using a similar logic to Claim 3, we see that if a single &#x2b20; touches an entire edge of the quadrilateral, it would yield a remainder region that is, by Claim 2, the same as a quadrilateral and thus cannot be minimal. We also make the assumption in Claim 4. If two &#x2b20;s touch each edge, the remainder region is, again, by Claim 2, the same as a quadrilateral and cannot be minimal (see below picture). Thus at least one edge must have three &#x2b20;s touching it.
+
+![Claim 5.2](blog/blog/triangle_claim5.svg)
+
+Claim 6: Each edge of triangle minimally filled with &#x2b20;s must have more than two &#x2b20; touching it.
+-------
+
+Suppose that there are &#x2b20; touching an edge of the triangle. In all cases the remainder area is essentially a quadrilateral. By Claim 2b and Claim 5, the remainder area with only one &#x2b20; in the figure in Claim 4 requires the same or fewer &#x2b20;s than the remainder area in each of cases a, b, c in the figure below. Thus having two &#x2b20; touching an edge is not minimal.
+
+![Claim 6](blog/blog/triangle_claim6.svg)
+
+Proposition 1: A triangle minimally filled with &#x2b20;s must contain 9 &#x2b20;s.
+------
+
+From Claim 6 we have that each edge must have at least 3 &#x2b20;s touching it. Thus we have at least six &#x2b20;s on the edges. The remainder area has more than two concavities and therefore cannot be the disjoint union of two &#x2b20;s (the number of concavities in the remainder area is even more if we have more &#x2b20;s touching the perimeter of the triangle).
+
+![Proposition 1](blog/blog/triangle_claim7.svg)
+
+Hence, we require at least 3 &#x2b20;s for the remainder area, such that the whole triangle requires at least 9 &#x2b20;s. But from Claim 0 we have that the upper bound is &#x2b20;s. So we have obtained our desired result.
+
+**Quod erat demonstrandum**
