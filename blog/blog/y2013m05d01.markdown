@@ -23,7 +23,7 @@ Suppose that we have a concave polygon that is filled with &#x2b20;s. We may "st
 
 **Claim 2a:** More generally, _a concave polygon must require at least as many &#x2b20;s as a concave polygon with the same number of convex vertices and fewer concave vertices._ This follows easily from the same logic by only "straightening out" some, but not all, of the exterior concave vertices.
 
-**Claim 2b:** Conversely, _if a convex polygon minimally filled with &#x2b20;s requires N_i &#x2b20;s touching the ith edge, it requires the same number of &#x2b20;s as a concave polygon with the same number of convex vertices and with fewer than or equal to N_i concave vertices between the ith convex vertex and the i+1th convex vertex._
+**Claim 2b:** Conversely, _if a convex polygon minimally filled with &#x2b20;s requires N_i &#x2b20;s touching the ith edge, it requires the same number of &#x2b20;s as a concave polygon with the same number of convex vertices and with fewer than N_i concave vertices between the ith convex vertex and the i+1th convex vertex._
 
 Claim 3: Each edge of the triangle minimally filled with &#x2b20;s must have more than one &#x2b20; touching it.
 -------

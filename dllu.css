@@ -27,9 +27,9 @@ a:hover {
     line-height: 50px;
     vertical-align: center;
     font-size: 20px;
-    color: #743;
-    background-color: #efa4a0;
-    border-bottom: 1px solid #df9490;
+    color: #333;
+    background-color: #ccc;
+    border-bottom: 1px solid #aaa;
     text-align: center;
 }
 
