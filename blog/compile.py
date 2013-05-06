@@ -70,7 +70,7 @@ def main(prog_args):
 				"http://dllu.net/#blog/"+b, 
 				"Blog post of "+parsedate(b), 
 				time.strftime("%d %b %Y %H:%M:%S %z",parsedate2(b)),
-				"http://dllu.net/blog/"+b+"/main.html")
+				"http://dllu.net/#blog/"+b)
 			counter+=1
 	h_nav += """</div>"""
 	h_main += """</div>"""

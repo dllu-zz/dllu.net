@@ -6,29 +6,36 @@
 			<link>http://dllu.net/blog</link>
 			<description>A blog of some things.</description>
 			<language>en-ca</language>
-			<lastBuildDate>Wed, 01 May 2013 17:35:40 -0700</lastBuildDate>
+			<lastBuildDate>Sun, 05 May 2013 21:54:57 -0700</lastBuildDate>
 			<generator>dllu secret blog engine</generator>
 			
+			<item>
+				<title>A hexagonal maze.</title>
+				<link>http://dllu.net/#blog/y2013m05d04</link>
+				<description>Blog post of 4 May 2013</description>
+				<pubDate>04 May 2013 00:00:00 +0000</pubDate>
+				<guid isPermaLink="true">http://dllu.net/#blog/y2013m05d04</guid>
+			</item>
 			<item>
 				<title>Fitting convex pentagons in a triangle.</title>
 				<link>http://dllu.net/#blog/y2013m05d01</link>
 				<description>Blog post of 1 May 2013</description>
 				<pubDate>01 May 2013 00:00:00 +0000</pubDate>
-				<guid isPermaLink="true">http://dllu.net/blog/y2013m05d01/main.html</guid>
+				<guid isPermaLink="true">http://dllu.net/#blog/y2013m05d01</guid>
 			</item>
 			<item>
 				<title>Battlestation operational. Also, RSS feed.</title>
 				<link>http://dllu.net/#blog/y2013m04d27</link>
 				<description>Blog post of 27 April 2013</description>
 				<pubDate>27 Apr 2013 00:00:00 +0000</pubDate>
-				<guid isPermaLink="true">http://dllu.net/blog/y2013m04d27/main.html</guid>
+				<guid isPermaLink="true">http://dllu.net/#blog/y2013m04d27</guid>
 			</item>
 			<item>
 				<title>New website and other new things.</title>
 				<link>http://dllu.net/#blog/y2013m04d22</link>
 				<description>Blog post of 22 April 2013</description>
 				<pubDate>22 Apr 2013 00:00:00 +0000</pubDate>
-				<guid isPermaLink="true">http://dllu.net/blog/y2013m04d22/main.html</guid>
+				<guid isPermaLink="true">http://dllu.net/#blog/y2013m04d22</guid>
 			</item>
 		</channel>
 	</rss>

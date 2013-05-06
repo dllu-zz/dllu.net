@@ -1,0 +1,4 @@
+A hexagonal maze.
+=========
+
+I implemented a [hexagonal maze](hexmaze/). It uses my friend [Byron's](http://byronknoll.com) [visibility polygon library](https://code.google.com/p/visibility-polygon-js/). The maze is generated using a method similar to the old [maze](maze), and the solution path is computed using a similar method too. Each hexagonal maze cell has three walls since each edge touches two hexagons; and each hexagonal maze cell has two corners since each corner touches three hexagons. The maze generation algorithm is simply a randomized depth-first search. The parent of each maze cell is stored in an array so that, when computing the path between two points, we may start from both points and backtrack to the nearest common parent.
