@@ -16,7 +16,13 @@ $(document).ready( function() {
     $('#javascript-alert').remove();
     window.onhashchange = evaluatePath;
     evaluatePath();
+    window.onresize = scaleSidebar;
+    scaleSidebar();
 });
+
+scaleSidebar = function() {
+    $('#sidebar').css({height:window.innerHeight +'px'});
+};
 
 
 renderContent = function(data, contentInside, p) {
@@ -83,7 +89,7 @@ evaluatePath = function() {
         $('#breadcrumbs').html('');
         for(var j=1; j<=i; j++) {
             path += working_directory_split[j-1] + '/';
-            $('#breadcrumbs').append($('<a>').text(working_directory_split[j-1]).attr('href', '#' + path)).append(' / ');
+            $('#breadcrumbs').append($('<a>').text(working_directory_split[j-1]).attr('href', '#' + path));
         }
         $('title').text('dllu/'+working_directory);
         scout();
@@ -107,7 +113,7 @@ evaluatePath = function() {
     $('#breadcrumbs').html('');
     for(var j=1; j<=i; j++) {
         path += working_directory_split[j-1] + '/';
-        $('#breadcrumbs').append($('<a>').text(working_directory_split[j-1]).attr('href', '#' + path)).append(' / ');
+        $('#breadcrumbs').append($('<a>').text(working_directory_split[j-1]).attr('href', '#' + path));
         var contentInside = contentChildren[j] === undefined? undefined : $(contentChildren[j])
         if(j<i) {
             console.log('/branch', path);
@@ -127,7 +133,7 @@ evaluatePath = function() {
 scout = function() {
     var zxcv = false;
     var qwer = false;
-    $('#content a').each(function() {
+    $('#content a, #sidebar a').each(function() {
         var $this = $(this);
         if($this.attr('href')[0] === '#') {
             if(!loading) {
