@@ -230,10 +230,12 @@ a:hover {
 #content>.content-inside>.portfolio {
     background-color: #f9f9f9;
     text-align: center;
+    font-size: 0px;
 }
+
 #content>.content-inside>.portfolio a {
     display: inline-block;
-    margin: 20px;
+    margin: 16px;
     line-height: 330px;
     vertical-align: middle;
 }
@@ -294,7 +296,7 @@ a:hover {
 /* text */
 
 #content>.content-inside>section {
-    padding: 20px 0px 20px 0px;
+    padding: 30px 0px 20px 0px;
 }
 #content>.content-inside>section:not(:last-child) {
     border-bottom: 1px solid #ccc;
@@ -319,7 +321,11 @@ a:hover {
     max-width: 1080px;
     width: 80%;
     margin: 0 auto;
-    padding: 5px 60px 16px 60px;
+    padding: 6px 60px 16px 60px;
+}
+#content>.content-inside>section>h1:first-child,
+#content>.content-inside>section>h2:first-child {
+    padding-top: 6px;
 }
 #content>.content-inside>section>h1 {
     padding: 16px 60px 16px 60px;
