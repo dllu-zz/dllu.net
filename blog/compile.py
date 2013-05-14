@@ -17,7 +17,7 @@ def main(prog_args):
 	f_main = open('main.html', 'w')
 	h_main = """<a href="blog/rss.xml" id="rss"></a><div class="portfolio">"""
 	f_nav = open('nav.html', 'w')
-	h_nav = """<a href="blog/rss.xml" id="rss"></a><div class="portfolio">"""
+	h_nav = ''#"""<a href="blog/rss.xml" id="rss"></a>"""
 	f_rss = open('rss.xml', 'w')
 	rss = """<?xml version="1.0" ?>
 	<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -57,7 +57,7 @@ def main(prog_args):
 				h_main += """<br><a href="#blog/%s"><div class="caption">%s</div></a>""" % (b, parsedate(b))
 			else:
 				h_main += """<a href="#blog/%s"><div class="caption">%s</div></a>""" % (b, parsedate(b))
-			h_nav += """<a href="#blog/%s"><div class="caption">%s</div></a>""" % (b, parsedate(b))
+			#h_nav += """<a href="#blog/%s"><div class="caption">%s</div></a>""" % (b, parsedate(b))
 			rss += """
 			<item>
 				<title>%s</title>
@@ -72,7 +72,7 @@ def main(prog_args):
 				time.strftime("%d %b %Y %H:%M:%S %z",parsedate2(b)),
 				"http://dllu.net/#blog/"+b)
 			counter+=1
-	h_nav += """</div>"""
+	#h_nav += """</div>"""
 	h_main += """</div>"""
 	rss += """
 		</channel>

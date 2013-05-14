@@ -21,19 +21,23 @@ $(document).ready( function() {
 
 
 renderContent = function(data, contentInside, p) {
-    contentInside.html(data);
-    contentInside.find('a').each(function() {
-        if(!p) {
-            if(window.location.hash.indexOf($(this).attr('href')) !== -1) $(this).addClass('selected');
-        } else {
-            if(('#' + p).indexOf($(this).attr('href')) !== -1) $(this).addClass('selected');
-        }
-    });
-    contentInside.find('img').one('load', function() {
-        $(this).addClass('loaded');
-    }).each(function() {
-        if(this.complete) $(this).addClass('loaded');
-    });
+    if(data.length>0) {
+        contentInside.html(data);
+        contentInside.find('a').each(function() {
+            if(!p) {
+                if(window.location.hash.indexOf($(this).attr('href')) !== -1) $(this).addClass('selected');
+            } else {
+                if(('#' + p).indexOf($(this).attr('href')) !== -1) $(this).addClass('selected');
+            }
+        });
+        contentInside.find('img').one('load', function() {
+            $(this).addClass('loaded');
+        }).each(function() {
+            if(this.complete) $(this).addClass('loaded');
+        });
+    } else {
+        contentInside.remove();
+    }
     loading--;
     if(loading === 0) {
         $('#content').removeClass('loading');
@@ -95,7 +99,7 @@ evaluatePath = function() {
         $('title').text('dllu/'+working_directory);
         scout();
         arrangeTiles();
-        
+
         $('#content').find('img').one('load', function() {
             $(this).addClass('loaded');
         }).each(function() {
@@ -122,7 +126,7 @@ evaluatePath = function() {
     for(var j=1; j<=i; j++) {
         path += working_directory_split[j-1] + '/';
         $('#breadcrumbs').append($('<a>').text(working_directory_split[j-1]).attr('href', '#' + path));
-        var contentInside = contentChildren[j] === undefined? undefined : $(contentChildren[j])
+        var contentInside = contentChildren[j] === undefined? undefined : $(contentChildren[j]);
         if(j<i) {
             console.log('/branch', path);
             loadContent(path + 'nav.html', contentInside);
@@ -131,6 +135,13 @@ evaluatePath = function() {
             loadContent(path + 'main.html', contentInside);
         }
     }
+    // if(working_directory.length <=1) {
+    //     var extraContent = ['design', 'engineering', 'programming'];
+    //     for(var j=0; j<3; j++) {
+    //         var contentInside = contentChildren[j+i+1] === undefined? undefined : $(contentChildren[j]);
+    //         loadContent(extraContent[j]+'/main.html', contentInside);
+    //     }
+    // }
     console.log(i, iterationLength);
     for(var j=i+1; j<iterationLength; j++){
         $(contentChildren[j]).remove();

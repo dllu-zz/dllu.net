@@ -62,6 +62,7 @@ img.loaded {
     top: 0px;
     left: 0px;
     margin: 10px;
+    z-index: 3;
 }
 
 .dllu {
@@ -120,6 +121,7 @@ img.loaded {
     text-align: left;
     padding: 0px 25px 20px 25px;
     margin-top: 10px;
+    z-index: 4;
 }
 
 #breadcrumbs a:hover {
@@ -198,6 +200,9 @@ img.loaded {
     height: 50px;
     text-align: center;
     font-size: 0px;
+    margin-bottom: -1px;
+    position: relative;
+    z-index: 2;
 }
 
 #content>.content-inside>.nav>a {
@@ -230,7 +235,7 @@ img.loaded {
     box-shadow: inset 0 0 8px rgba(0,0,0,0.2);
 }
 
-@media screen and (max-width: 1260px) {
+@media screen and (max-width: 1200px) {
     #content>.content-inside>.nav {
         margin-top: 50px;
     }
@@ -239,7 +244,7 @@ img.loaded {
 /* porfolio */
 
 #content>.content-inside>.portfolio {
-    background-color: #f9f9f9;
+    background-color: #333;
     text-align: center;
     font-size: 0px;
 }
@@ -248,15 +253,17 @@ img.loaded {
     display: inline-block;
     margin: 16px;
     line-height: 300px;
+    width: 302px;
+    height: 302px;
     position: relative;
 }
 #content>.content-inside>.portfolio a>.portfoliotile {
     height: 300px;
     width: 300px;
     box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
-    border: 1px solid #888;
+    border: 1px solid #111;
     overflow: hidden;
-    background-color: #333;
+    background-color: #555;
     transition: all 0.1s ease-in-out;
     -moz-transition: all 0.1s ease-in-out;
     -webkit-transition: all 0.1s ease-in-out;
