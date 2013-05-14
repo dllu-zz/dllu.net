@@ -1,0 +1,17 @@
+<section id="y2013m05d13"><h3>13 May 2013</h3><h1>Voronoi diagram maze.</h1>
+<p>tl;dr <a href="/voronoimaze/">here's the demo</a></p>
+<p>A maze is a <a href="http://en.wikipedia.org/wiki/Tree_(graph_theory)">tree</a>. Given any connected graph, a <a href="http://en.wikipedia.org/wiki/Maze_generation_algorithm">maze-generation algorithm</a> finds a random spanning tree for that graph. Each node in the graph is a cell in the maze, and the edges represent walls. The algorithm I tend to use for generating mazes is a simple randomized depth-first search:</p>
+<pre><code>History := new stack.
+Current := random cell.
+Do:
+    History.push(Current).
+    Current := random neighbour.
+    Destroy wall between Current and History.
+    While Current has no neighbours and History is not empty:
+        Current := History.pop().
+While History is not empty.
+</code></pre>
+<p>Being able to run on any kind of graph, the maze generation algorithm is very general and works for higher dimensions as well. The choice of what kind of graph to start with, however, has traditionally been an unimaginative one. People almost always chose the classical rectangular lattice, i.e. the <a href="http://en.wikipedia.org/wiki/Lattice_graph#Square_grid_graph">square grid</a>, where each cell has four neighbours. Possibly the second most common lattice is the <a href="http://en.wikipedia.org/wiki/Hexagonal_lattice">hexagonal lattice</a>, where each cell has six neighbours.</p>
+<p>In this blog post I present a demo for a maze generated from a <a href="http://en.wikipedia.org/wiki/Voronoi_diagram">Voronoi diagram</a>. A Voronoi diagram is a way of dividing a space into convex polygons based on a set of points. When used for generating mazes, each maze cell is a Voronoi cell, and corresponds to a node on the graph. The maze generation algorithm randomly but judiciously destroys walls between Voronoi cells until every Voronoi cell is walkable and the walkable area is simply connected. The advantage of using a Voronoi diagram approach is that, depending on how the original set of points were chosen, any kind of maze can be generated. This includes all the regular lattices such as the square lattice and the hexagonal lattice. As such the Voronoi approach to maze generation is more general.</p>
+<p>My Javascript demo uses Raymond Hill's excellent <a href="http://www.raymondhill.net/voronoi/rhill-voronoi.php">Javascript library for Voronoi diagrams</a>. For fun, I've also included the use of Visibility Polygon (see <a href="#blog/y2013m05d04">previous blog post</a>).</p>
+<p>The demo works with <a href="/voronoimaze/">random points</a>, <a href="/voronoimaze/#square">square lattice</a>, and <a href="/voronoimaze/#hex">hexagonal lattice</a>.</p></section>

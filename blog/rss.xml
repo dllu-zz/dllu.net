@@ -6,9 +6,16 @@
 			<link>http://dllu.net/blog</link>
 			<description>A blog of some things.</description>
 			<language>en-ca</language>
-			<lastBuildDate>Sun, 05 May 2013 21:54:57 -0700</lastBuildDate>
+			<lastBuildDate>Mon, 13 May 2013 20:08:49 -0700</lastBuildDate>
 			<generator>dllu secret blog engine</generator>
 			
+			<item>
+				<title>Voronoi diagram maze.</title>
+				<link>http://dllu.net/#blog/y2013m05d13</link>
+				<description>Blog post of 13 May 2013</description>
+				<pubDate>13 May 2013 00:00:00 +0000</pubDate>
+				<guid isPermaLink="true">http://dllu.net/#blog/y2013m05d13</guid>
+			</item>
 			<item>
 				<title>A hexagonal maze.</title>
 				<link>http://dllu.net/#blog/y2013m05d04</link>
