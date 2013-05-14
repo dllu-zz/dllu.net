@@ -29,6 +29,11 @@ renderContent = function(data, contentInside, p) {
             if(('#' + p).indexOf($(this).attr('href')) !== -1) $(this).addClass('selected');
         }
     });
+    contentInside.find('img').one('load', function() {
+        $(this).addClass('loaded');
+    }).each(function() {
+        if(this.complete) $(this).addClass('loaded');
+    });
     loading--;
     if(loading === 0) {
         $('#content').removeClass('loading');
@@ -90,6 +95,12 @@ evaluatePath = function() {
         $('title').text('dllu/'+working_directory);
         scout();
         arrangeTiles();
+        
+        $('#content').find('img').one('load', function() {
+            $(this).addClass('loaded');
+        }).each(function() {
+            if(this.complete) $(this).addClass('loaded');
+        });
         return;
     }
     $('#content').addClass('loading');
