@@ -247,11 +247,12 @@ img.loaded {
     background-color: #333;
     text-align: center;
     font-size: 0px;
+    padding: 10px;
 }
 
 #content>.content-inside>.portfolio a {
     display: inline-block;
-    margin: 16px;
+    margin: 10px;
     line-height: 300px;
     width: 302px;
     height: 302px;
@@ -263,7 +264,7 @@ img.loaded {
     box-shadow: 0px 0px 8px rgba(0,0,0,0.2);
     border: 1px solid #111;
     overflow: hidden;
-    background-color: #555;
+    background-color: #fdfdfd;
     transition: all 0.1s ease-in-out;
     -moz-transition: all 0.1s ease-in-out;
     -webkit-transition: all 0.1s ease-in-out;
@@ -281,7 +282,6 @@ img.loaded {
     color: #333;
     text-decoration: none;
     overflow-x: auto;
-    background-color: #fdfdfd;
 }
 
 #content>.content-inside>.portfolio a>.portfoliotile.text>p {
@@ -318,6 +318,10 @@ img.loaded {
 #content>.content-inside>.portfolio a.selected>.caption {
     color: #f9f9f9;
     font-weight: bold;
+}
+
+#content>.content-inside>.portfolio a:hover img {
+    opacity: 0.9;
 }
 
 /* text */
