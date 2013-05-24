@@ -23,13 +23,13 @@ $(document).ready( function() {
 renderContent = function(data, contentInside, p) {
     if(data.length>0) {
         contentInside.html(data);
-        contentInside.find('a').each(function() {
-            if(!p) {
-                if(window.location.hash.indexOf($(this).attr('href')) !== -1) $(this).addClass('selected');
-            } else {
-                if(('#' + p).indexOf($(this).attr('href')) !== -1) $(this).addClass('selected');
-            }
-        });
+        // contentInside.find('a').each(function() {
+        //     if(!p) {
+        //         if(window.location.hash.indexOf($(this).attr('href')) !== -1) $(this).addClass('selected');
+        //     } else {
+        //         if(('#' + p).indexOf($(this).attr('href')) !== -1) $(this).addClass('selected');
+        //     }
+        // });
         contentInside.find('img').one('load', function() {
             $(this).addClass('loaded');
         }).each(function() {

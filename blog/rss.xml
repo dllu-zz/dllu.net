@@ -6,9 +6,16 @@
 			<link>http://dllu.net/blog</link>
 			<description>A blog of some things.</description>
 			<language>en-ca</language>
-			<lastBuildDate>Tue, 14 May 2013 13:30:01 -0700</lastBuildDate>
+			<lastBuildDate>Fri, 24 May 2013 14:29:47 -0700</lastBuildDate>
 			<generator>dllu secret blog engine</generator>
 			
+			<item>
+				<title>Swinging Atwood's machine fractal.</title>
+				<link>http://dllu.net/#blog/y2013m05d24</link>
+				<description>Blog post of 24 May 2013</description>
+				<pubDate>24 May 2013 00:00:00 +0000</pubDate>
+				<guid isPermaLink="true">http://dllu.net/#blog/y2013m05d24</guid>
+			</item>
 			<item>
 				<title>Voronoi diagram maze.</title>
 				<link>http://dllu.net/#blog/y2013m05d13</link>
