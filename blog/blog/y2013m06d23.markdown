@@ -1,0 +1,8 @@
+Customizing my desktop.
+=========
+
+![Screenshot](blog/blog/2013-06-23-134721_4480x1440_scrot.png)
+
+A few weeks ago I installed [Arch Linux](http://www.archlinux.org) on my desktop. It is quite pleasant to use. Yesterday I installed the [Luakit](http://mason-larobina.github.io/luakit/) browser. It is very fast and uses up very little screen real estate, which I like.
+
+The new tab page shown in the screenshot is, of course [my custom new tab page](/wob2/), tweaked a bit to match the rest of the system. The background image is [rendered by me](http://en.wikipedia.org/wiki/File:Glass_ochem_dof2.png). 

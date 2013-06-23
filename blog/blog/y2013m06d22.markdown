@@ -1,0 +1,87 @@
+ICPC Challenge Open
+=========
+
+![Screenshot](http://i.imgur.com/jXyzpuk.png)
+
+I participated in the [2013 ICPC Challenge](http://icpc.baylor.edu/challenge/) and placed fourth place amongst open submissions. This means that it will go on to fight the World Finalists during the World Finals next month.
+
+Description of challenge
+--------
+
+The goal of the Challenge is to write a program to control a player to play a game called _coderunner_. The object of the game is to get as many points as possible. You get:
+
+- 100 points for collecting a gold coin
+- 20 points for killing an enemy
+- 300 points for killing the opponent player
+
+You can kill enemies by knocking holes in the ground and letting the enemies fall into the holes (enemies are oblivious to the existence of holes). If you walk into a hole yourself, you will simply fall through it; you can fall from any height and be okay, unless you fall through the hole in the bottom layer. In that case, you'll die. You will also die if you run into (or are run into by) an enemy. You can kill the opponent by knocking a hole in the ground on the bottom layer such that the opponent player falls into it.
+
+Typically, an AI would try to avoid dying and collect as many coins as possible.
+
+Overview of implementation
+-------- 
+
+On each turn the program is fed some information: the world map, including all the gold coins, and the positions of all the enemies. The program is expected to output its move within 120 ms. 
+
+My AI is pretty simple. It simply does a depth first search to 5 depth. At the terminating nodes it evaluates a heuristic function at the end. The heuristic function is here given in Python-like pseudocode
+
+    function eval:
+        if dead:
+            return -3000
+
+        score = points
+
+        for gold in golds:
+            score += 150.0 / ((distance to gold)^2 + 2)
+
+        if standing above brick:
+            score += 10
+
+        if standing in ladder:
+            score += 15
+
+        if standing above ladder:
+            score += 12
+
+        score -= 4*(distance from top row)
+
+        score -= 0.4*(distance from center column)
+
+        score -= 7*(number of times this cell has been visited)
+
+If you are wondering why I chose those precise values or formulas, the answer is that it is completely arbitrary. 
+
+At each node in the search, we generate some new nodes for all the possible moves. To look farther into the future, if the player is in free fall, I immediately compute the node by the time it lands on the ground. This way, when leaping off from a great height, it is hoped that the player will not land exactly where there is an enemy. Unfortunately my code for predicting enemies is not perfect, and the opponent player may influence the motion of enemies, so the player often dies by landing on an enemy.
+
+Enemy prediction
+-------
+
+To perform the search correctly, the AI must be able to know where the enemies will be in the future. If I assume that the enemies stand still, then it will never "occur" to the AI to knock a hole in the ground between itself and an approaching enemy. Worse, the AI and an enemy may both walk onto the same spot during the same turn. So it must have some way of predicting enemy motions.
+
+The motion of each enemy is in two modes:
+
+- PATROL mode. The enemy goes in a fixed orbit given by a series of moves supplied in the first turn.
+- ZEALOT CHARGE mode. The enemy performs a breadth first search, and depending on which player it was most recently killed by, it would chase after a player if the player is within a certain distance. The enemy will never choose a path that causes it to fall through thin air.
+- STUCK. The enemy gets stuck if it falls into a destroyed block.
+
+To deal with PATROL mode, it is too computationally expensive to compute its next position each time we update a node during the search (which happens thousands of times). This is especially because the enemy's motions are dependent on its surroundings too... for example, it falls through thin air at a rate twice as fast as it can otherwise move. Instead I store the enemy's position as a function of time in a lookup table. The position at time `t` is therefore given by:
+
+    current position = pos[t%len(pos)]
+
+I tested this algorithm with an AI that does nothing (so that the enemies are always in PATROL mode). After eliminating some off-by-one bugs, it predicts the enemies' motions perfectly! Success!
+
+To deal with ZEALOT CHARGE mode is trickier. To avoid having to perform an extra search in addition to the primary search to figure out enemy motions, my program only considers ZEALOT CHARGE mode if the enemy is on the same row or same column as my own program and is within a distance of 5 units. Although enemies only move once per two turns, whether they move on odd turns or even turns can change (for example, by dying falling through thin air which is twice as fast) so one has to keep track of whether the enemy is about to move or not. I was too lazy to implement that so I assumed that they move at the same speed as the player. Anyway, it turns out that this part of the code fails horribly and is the primary cause for my player dying (up to 8 times in a single match!).
+
+Because my simulation of enemy movement is inexact, the enemies often get desynchronised from the correct PATROL movement. I have an inelegant piece of code that attempts to synchronise each enemy by "turning back its clock" until the last two positions match the last two observed positions. Apparently, this is not very reliable, since the enemy may visit the same location from different directions, and is probably the secondary cause for my player dying (e.g. when jumping off a great height).
+
+After the coding phase was over, it occurred to me that I could have used more lookup tables to compute the enemies' movements in ZEALOT CHARGE mode. Since we are given a full 1 s to do precomputations in the first turn, it would be quite doable. The idea is that, for every point in the map, we perform a breadth-first-search of, say, depth 8 (the maximum distance for ZEALOT CHARGE mode). Therefrom we may generate a policy (up, down, left, or right) for each enemy location in the map for each player location in the map. So, then, when needing to know where an enemy in ZEALOT CHARGE mode will go, with respect to where the player is, we can simply read off this value in the lookup table, knowing both the enemy and the player locations. Notice that, since this search does not involve using the sledgehammer or falling through thin air, it is a lot simpler and faster. The number of possible locations is only 400, and an array of 160,000 elements is quite small. This should yield a perfect simulation of the enemies and thus we probably don't even need the synchronisation stuff.
+
+Conclusion
+-------
+
+Notice that my AI is only a naive search engine and not an adversarial search engine. It simply seeks to maximise its own profits and doesn't even care about what thet opponent player is doing. An adversarial search like minimax would be much stronger, but would be significantly slower since it needs to compute what the opponent ought to do too.
+
+My AI also does not consider the fact that it may get stuck in a useless pit with very few gold coins, in which case it would be better to commit suicide and respawn in a place with more gold coins. Then again, it is so bad at avoiding enemies that it simply dies anyway. One of the competitors in the contest was excellent at staying alive but was eliminated because it could not collect as many gold coins.
+
+Overall participating in this contest was a fun experience. 
+
