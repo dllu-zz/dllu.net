@@ -81,7 +81,12 @@ Conclusion
 
 Notice that my AI is only a naive search engine and not an adversarial search engine. It simply seeks to maximise its own profits and doesn't even care about what thet opponent player is doing. An adversarial search like minimax would be much stronger, but would be significantly slower since it needs to compute what the opponent ought to do too.
 
-My AI also does not consider the fact that it may get stuck in a useless pit with very few gold coins, in which case it would be better to commit suicide and respawn in a place with more gold coins. Then again, it is so bad at avoiding enemies that it simply dies anyway. One of the competitors in the contest was excellent at staying alive but was eliminated because it could not collect as many gold coins.
+My AI also does not consider the fact that it may get stuck in a useless pit with few or nogold coins, in which case it would be better to commit suicide and respawn in a place with more gold coins. Then again, it is so bad at avoiding enemies that it simply dies anyway. One of the competitors in the contest was excellent at staying alive but was eliminated because it could not collect as many gold coins.
 
-Overall participating in this contest was a fun experience. 
+Overall participating in this contest was a fun experience. If I were to do this again, I would:
+
+- implement the better enemy prediction ideas;
+- use breadth first search instead of depth first, and terminate the search once time is up;
+- implement code to detect whether it is stuck in a useless pit with few gold coins; and
+- start working on this earlier instead of in the last 3 days (out of 2 weeks) of the coding phase.
 
