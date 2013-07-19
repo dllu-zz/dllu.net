@@ -1,0 +1,138 @@
+<section id="y2013m07d18"><h3>18 July 2013</h3><h1>Branching vs Modulo</h1>
+<p>The question is: when cyclically iterating through a fixed range, is it better to use the modulo operator on the index variable, or use a conditional branch once the index exceeds the range limit? That is to say, which of the following is better?</p>
+<pre><code>for(int i=a; i!=b; i=(i+1)%N)
+
+for(int i=a; i!=b; i=(++i==N)?0:i)
+</code></pre>
+<p>The first option looks much cleaner and is easier to read. In non performance-critical systems, or if your programming project is not at the end of its development stage, you should <em>always</em> use modulo. Never <a href="http://en.wikipedia.org/wiki/Premature_optimization#When_to_optimize">prematurely optimize</a>. Even if you were to optimize your program, you should probably start with a profiler instead of fiddling with little things like the modulo operator in loops.</p>
+<p>That said, I am currently writing a solver for the <a href="http://en.wikipedia.org/wiki/Travelling_salesman_problem">Travelling Salesman Problem</a> where it is nice to have more speed. So I decided to find out which one is faster.</p>
+<p>Branching is generally bad in loops, but with <a href="http://en.wikipedia.org/wiki/Branch_prediction">branch prediction</a> it really only needs to evaluate the condition once every loop. On the other hand, the expensive modulo operator would be evaluated up to N times per loop.</p>
+<p>To test the performance, I made two simple C++ programs:</p>
+<h2>test_modulo.cpp</h2>
+<pre><code>#include &lt;iostream&gt;
+int main() {
+    int N = 19739; long long x=0;
+    for(int i=0; i&lt;99999; i++) {
+        for(int j=3; j!=2; j=(j+1)%N) x+=j;
+    }
+    std::cout&lt;&lt;x;
+}
+</code></pre>
+<h2>test_branch.cpp</h2>
+<pre><code>#include &lt;iostream&gt;
+int main() {
+    int N = 19739; long long x=0;
+    for(int i=0; i&lt;99999; i++) {
+        for(int j=3; j!=2; j=(++j==N)?0:j) x+=j;
+    }
+    std::cout&lt;&lt;x;
+}
+</code></pre>
+<p>Here's a script to test the performance of these programs:</p>
+<h2>testingscript.sh</h2>
+<pre><code>echo "Modulo:"
+g++ -o test test_modulo.cpp &amp;&amp; time ./test
+echo "Branch:"
+g++ -o test test_branch.cpp &amp;&amp; time ./test
+echo "Modulo -O:"
+g++ -O -o test test_modulo.cpp &amp;&amp; time ./test
+echo "Branch -O:"
+g++ -O -o test test_branch.cpp &amp;&amp; time ./test
+echo "Modulo -O2:"
+g++ -O2 -o test test_modulo.cpp &amp;&amp; time ./test
+echo "Branch -O2:"
+g++ -O2 -o test test_branch.cpp &amp;&amp; time ./test
+echo "Modulo -O3:"
+g++ -O3 -o test test_modulo.cpp &amp;&amp; time ./test
+echo "Branch -O3:"
+g++ -O3 -o test test_branch.cpp &amp;&amp; time ./test
+rm test
+</code></pre>
+<h1>Testing Results</h1>
+<p>And here are the results:</p>
+<pre><code>$sh testingscript.sh
+Modulo:
+19480224095811
+real    0m14.962s
+user    0m14.947s
+sys 0m0.000s
+Branch:
+19480224095811
+real    0m7.567s
+user    0m7.557s
+sys 0m0.000s
+Modulo -O:
+19480224095811
+real    0m8.557s
+user    0m8.547s
+sys 0m0.000s
+Branch -O:
+19480224095811
+real    0m1.425s
+user    0m1.423s
+sys 0m0.000s
+Modulo -O2:
+19480224095811
+real    0m8.293s
+user    0m8.283s
+sys 0m0.000s
+Branch -O2:
+19480224095811
+real    0m1.302s
+user    0m1.300s
+sys 0m0.000s
+Modulo -O3:
+19480224095811
+real    0m8.277s
+user    0m8.267s
+sys 0m0.000s
+Branch -O3:
+19480224095811
+real    0m1.308s
+user    0m1.307s
+sys 0m0.000s
+</code></pre>
+<p>So there, branching utterly trounces the modulo operator. What if we made N smaller? Surely it would need to branch more? Changing N to 7 and the maximum for i to 999999999, we get:</p>
+<pre><code>$sh testingscript.sh
+Modulo:
+18999999981
+real    0m32.710s
+user    0m32.653s
+sys 0m0.020s
+Branch:
+18999999981
+real    0m12.896s
+user    0m12.883s
+sys 0m0.000s
+Modulo -O:
+18999999981
+real    0m16.496s
+user    0m16.480s
+sys 0m0.000s
+Branch -O:
+18999999981
+real    0m4.541s
+user    0m4.537s
+sys 0m0.000s
+Modulo -O2:
+18999999981
+real    0m16.669s
+user    0m16.650s
+sys 0m0.000s
+Branch -O2:
+18999999981
+real    0m4.282s
+user    0m4.280s
+sys 0m0.000s
+Modulo -O3:
+18999999981
+real    0m0.001s
+user    0m0.000s
+sys 0m0.000s
+Branch -O3:
+18999999981
+real    0m4.318s
+user    0m4.313s
+sys 0m0.000s
+</code></pre>
+<p>Branch still wins most of the time with the notable exception of when it is compiled under -O3. Probably the compiler did some sneaky optimization there. If I were the compiler, I would do a <a href="http://en.wikipedia.org/wiki/Loop_interchange">loop interchange</a>.</p></section>
