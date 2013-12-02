@@ -9,7 +9,7 @@ var working_directory;
 var bad = false;
 
 $(document).ready( function() {
-    if(true) {
+    if(false) {
         console = {log: function() {}};
     }
     working_directory = '';
@@ -62,10 +62,16 @@ loadContent = function(path, contentInside, p) {
         }
     }
     loading++;
-    $.get(path, function(data) {
-        renderContent(data, contentInside, p);
-    }, 'html').error(function(data, textStatus, jqXHR) {
-        renderContent('<section><h1>Error: ' + jqXHR + '</h1><p>' + textStatus + '</p></section>', contentInside, p);
+    $.ajax({
+        url:path, 
+        success:function(data) {
+            renderContent(data, contentInside, p);
+        },
+        error:function(data, textStatus, jqXHR) {
+            renderContent('<section><h1>Error: ' + jqXHR + '</h1><p>' + textStatus + '</p></section>', contentInside, p);
+        },
+        dataType:'html',
+        cache:false
     });
 };
 
