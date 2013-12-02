@@ -6,11 +6,25 @@
 			<link>http://dllu.net/blog</link>
 			<description>A blog of some things.</description>
 			<language>en-ca</language>
-			<lastBuildDate>Thu, 18 Jul 2013 23:10:06 -0700</lastBuildDate>
+			<lastBuildDate>Mon, 02 Dec 2013 00:43:55 -0800</lastBuildDate>
 			<generator>dllu secret blog engine</generator>
 			
 			<item>
-				<title>Branching vs Modulo</title>
+				<title>A busy term.</title>
+				<link>http://dllu.net/#blog/y2013m12d01</link>
+				<description>Blog post of 1 December 2013</description>
+				<pubDate>01 Dec 2013 00:00:00 +0000</pubDate>
+				<guid isPermaLink="true">http://dllu.net/#blog/y2013m12d01</guid>
+			</item>
+			<item>
+				<title>ACM ICPC PACNW 2013.</title>
+				<link>http://dllu.net/#blog/y2013m11d02</link>
+				<description>Blog post of 2 November 2013</description>
+				<pubDate>02 Nov 2013 00:00:00 +0000</pubDate>
+				<guid isPermaLink="true">http://dllu.net/#blog/y2013m11d02</guid>
+			</item>
+			<item>
+				<title>Branching vs Modulo.</title>
 				<link>http://dllu.net/#blog/y2013m07d18</link>
 				<description>Blog post of 18 July 2013</description>
 				<pubDate>18 Jul 2013 00:00:00 +0000</pubDate>
@@ -24,7 +38,7 @@
 				<guid isPermaLink="true">http://dllu.net/#blog/y2013m06d23</guid>
 			</item>
 			<item>
-				<title>ICPC Challenge Open</title>
+				<title>ICPC Challenge Open.</title>
 				<link>http://dllu.net/#blog/y2013m06d22</link>
 				<description>Blog post of 22 June 2013</description>
 				<pubDate>22 Jun 2013 00:00:00 +0000</pubDate>

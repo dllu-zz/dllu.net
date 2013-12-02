@@ -1,4 +1,4 @@
-ICPC Challenge Open
+ICPC Challenge Open.
 =========
 
 ![Screenshot](http://i.imgur.com/jXyzpuk.png)

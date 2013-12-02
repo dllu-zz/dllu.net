@@ -1,0 +1,143 @@
+ACM ICPC PACNW 2013.
+==========================
+
+In the [Association of Computing Machinery International Collegiate Programming Contest (Pacific Northwest Region), 2013](http://acmicpc-pacnw.org/), my team, UBC Wrong Answer, placed fourth. We were the Canada site champions.
+
+![Group Photo](blog/blog/ubc.jpg)
+
+In the above picture, I am on the far left. The rectilinear distortion makes me look wider than I really am. 
+
+We had been practicing for the contest twice every week this term by solving problems from past contests in different regions.  The course load for Engineering Physics makes it hard to spend lots of time on extracurricular activities, but the pleasure of solving problems and the free pizza makes it worth it.
+
+I think this year we spent too much time practicing the easy problems and were inadequately prepared for the harder ones.  That is why for the first hour of the contest, UBC Wrong Answer was in first place with five solved problems, but it took another four hours to solve two more problems, during which we were overtaken by the Stanford and Berkeley teams.
+
+Overall, I think we did a fine job.  Last year, Angus and I placed 14th in the regionals, so this time it is a huge improvement.  I am optimistic that next year there is a good chance that a UBC team will make it to the world finals (although I will have graduated by then).
+
+I encourage all students who are interested in programming and algorithms to join the [UBC ACM Programming Club](https://sites.google.com/site/ubcprogrammingteam/)!
+
+Past ACM regionals that the UBC programming team have been to are listed [here](https://sites.google.com/site/ubcprogrammingteam/history).
+
+Selected analysis of problems
+---------------------
+
+The problem statements can be downloaded as a [pdf file](http://acmicpc-pacnw.org/ProblemSet/2013/ICPC_PacNW_2013_ProblemStatements.pdf). 
+
+### Problem I
+
+Consider a partition of the positions such that all positions in the left partition are closer to the left wormhole than the right one, and vice versa. Then, the maximum distance travelled is equal to the distance between the rightmost and leftmost position in the partition (since we have defined the partition so that travelling to the other wormhole will always be worse). Then, we minimize over all possible ways to partition this. We did not get our solution accepted in the contest because we used `int` instead of `long long`, causing problems with integer overflow.
+
+    #include <iostream>
+    #include <algorithm>
+    #define max(a,b) ((a)>(b)?(a):(b))
+    using namespace std;
+    int main() {
+        int t;
+        cin >> t;
+        while(t--) {
+            int N; cin >> N;
+            long long *x = new long long[N]; // OMG THIS OVERFLOW
+            for(int i=0; i<N; i++) {
+                cin >> x[i];
+            }
+            sort(x, x+N);
+            long long qwer = 2000000000000L;
+            for(int i=0; i<N-1; i++) {
+                long long dis = max(x[i]-x[0],x[N-1]-x[i+1]);
+                qwer = min(dis, qwer);
+            }
+            cout << qwer << endl;
+            delete [] x;
+        }
+        return 0;
+    }
+
+
+### Problem J
+
+This problem gives you a bunch of circles and asks you to find the greatest number of circles that a single straight line can pass through. First, make the observation that we only need to consider lines tangent to at least one circle. Given a line that passes through some circles, you can always wiggle the line so that it is tangent to one of the circles that it intersects, without passing through any fewer circles.
+
+We consider an angular sweep of a tangent line around a circle. Imagine a line that's tangent to a circle and rotates around it. For every other circle, we store the angle at which it enters the circle and the angle at which it exits the circle. We then sort all these events and iterate through them to find what is the maximum number of circles that the sweeping line passes through.
+
+![diagram](blog/blog/circlesweep.svg)
+
+In the above diagram, we find the start and end event angles of a right-hand tangent line from the blue circle of radius _R_ to the green circle of radius _r_. Suppose that the distance between the circles is _d_. Then we can find the start and end angles by performing simple trigonometry on the two right angles with hypotenuse _d_ and opposite leg lengths _r+R_ and _r-R_. For the left-hand tangent lines, the picture is simply mirrored. A complete tangent line is a right-hand tangent line plus the left-hand tangent line rotated by _pi_.
+
+    #include <iostream>
+    #include <complex>
+    #include <vector>
+    #include <algorithm>
+
+    using namespace std;
+
+    typedef long double ld;
+    typedef complex<ld> pt;
+    const ld PI = acos(-1.0L), EPS = 1e-6;
+
+    struct circle {
+        pt c;
+        ld r;
+        circle(pt p, ld r) : c(p), r(r) {};
+        circle() {}
+    };
+
+    struct event {
+        ld angle;
+        int type;
+        bool operator<(const event& other) const {return angle < other.angle;}
+    };
+
+    ld anglerange(ld angle) {
+        while(angle>2*PI) angle-=2*PI;
+        while(angle<0) angle+=2*PI;
+        return angle;
+    }
+
+    int main() {
+        ios::sync_with_stdio(0);
+        int t; cin >> t;
+        vector<circle> v;
+        while (t--) {
+            int n; cin >> n;
+            v.clear();
+            for (int i = 0; i < n; i++) {
+                ld x, y, r;
+                cin >> x >> y >> r;
+                pt c(x,y);
+                circle circ(c, r);
+                v.push_back(circ);
+            }
+            int xam = 0;
+            for(int i=0; i<n; i++) {
+                vector<event>e;
+                int depth = 0;
+
+                for(int j=0; j<n; j++) {
+                    if(i==j) continue;
+                    ld d = abs(v[j].c-v[i].c), a = arg(v[j].c-v[i].c);
+                    event start, end;
+                    start.type = 1;
+                    end.type = -1;
+
+                    start.angle = anglerange(a - asin((v[j].r-v[i].r-EPS)/d));
+                    end.angle = anglerange(a + asin((v[j].r+v[i].r+EPS)/d));
+                    e.push_back(start);
+                    e.push_back(end);
+                    if(start.angle > end.angle) depth++;
+
+                    start.angle = anglerange(a - asin((v[j].r+v[i].r-EPS)/d) + PI);
+                    end.angle = anglerange(a + asin((v[j].r-v[i].r+EPS)/d) + PI);
+                    e.push_back(start);
+                    e.push_back(end);
+                    if(start.angle > end.angle) depth++;
+                }
+                sort(e.begin(), e.end());
+                for(int j=0, _j = e.size(); j<_j; j++) {
+                    depth += e[j].type;
+                    if(depth>xam)  xam = depth;
+                }
+            }
+            cout << xam+1 << endl;
+        }
+    }
+
+

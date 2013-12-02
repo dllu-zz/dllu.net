@@ -1,4 +1,4 @@
-Branching vs Modulo
+Branching vs Modulo.
 ==========================
 
 The question is: when cyclically iterating through a fixed range, is it better to use the modulo operator on the index variable, or use a conditional branch once the index exceeds the range limit? That is to say, which of the following is better?

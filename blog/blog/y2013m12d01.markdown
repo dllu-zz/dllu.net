@@ -1,0 +1,12 @@
+A busy term.
+==========================
+
+This term is significantly more busy than I had expected. Graduate school applications, homeworks, and exams all seem to converge at exactly the same time. Consequently, there are few blog post updates. Sorry!
+
+I also did not manage to go to Dr. Kirk Madison's Quantum Degenerate Gases lab as often as I would have liked. So far, my meagre contribution to the [QDG Lab Framework](https://github.com/vbarua/QDG-Lab-Framework) consists of a partial implementation of a controller for the PrismaPlus residual gas spectrometer. Next week maybe I will take some time from studying for final exams to chill in the lab and finish implementing the residual gas spectrometer controller.
+
+Today I took a short (30 minutes) break from writing my statements of purpose for grad school applications to draw this:
+
+![Vienna](http://i.imgur.com/ki8qJ7r.jpg)
+
+I wish I could go on a vacation.
