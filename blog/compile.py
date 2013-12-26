@@ -51,12 +51,7 @@ def main(prog_args):
 			blog_out = open(os.path.join(b,'main.html'),'w')
 			blog_out.write(html)
 			title = blog_in_html.split('</h1>')[0].split('<h1>')[1]
-			if counter < 12:
-				h_main += """<a href="#blog/%s"><div class="portfoliotile text"><p>%s</p></div><div class="caption">%s</div></a>""" % (b, title, parsedate(b))
-			elif counter == 12:
-				h_main += """<br><a href="#blog/%s"><div class="caption">%s</div></a>""" % (b, parsedate(b))
-			else:
-				h_main += """<a href="#blog/%s"><div class="caption">%s</div></a>""" % (b, parsedate(b))
+			h_main += """<a href="#blog/%s"><div class="portfoliotile text"><p>%s</p></div><div class="caption">%s</div></a>""" % (b, title, parsedate(b))
 			#h_nav += """<a href="#blog/%s"><div class="caption">%s</div></a>""" % (b, parsedate(b))
 			rss += """
 			<item>
@@ -67,10 +62,10 @@ def main(prog_args):
 				<guid isPermaLink="true">%s</guid>
 			</item>""" % (
 				title, 
-				"http://dllu.net/#blog/"+b, 
+				"http://dllu.net/s/blog/"+b, 
 				"Blog post of "+parsedate(b), 
 				time.strftime("%d %b %Y %H:%M:%S %z",parsedate2(b)),
-				"http://dllu.net/#blog/"+b)
+				"http://dllu.net/s/blog/"+b)
 			counter+=1
 	#h_nav += """</div>"""
 	h_main += """</div>"""

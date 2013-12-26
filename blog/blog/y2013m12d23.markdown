@@ -1,0 +1,17 @@
+Raindrops.
+=========
+
+[![Raindrops](blog/blog/raindrops.jpg)](raindrops)
+
+I got quite inspired after seeing [CSS3 Raindrops on a Window](http://codepen.io/lbebber/pen/uIiJp). However, some commenters mentioned that raindrops that touch ought to merge together. This type of behaviour is easily accomplished using [metaballs](https://en.wikipedia.org/wiki/Metaballs). Hence, I made a [Javascript demo](raindrops) that uses Gaussian metaballs with simulated refraction. The metaballs are defined as simply regions where the sum of the Gaussians is greater than some threshold.
+
+If we assume each metaball to behave as a thin lens, then the refraction angle for a light ray normal to the glass pane would be proportional to the gradient of the metaball function. The gradient of a Gaussian is [easy to compute](http://www.wolframalpha.com/input/?i=gradient+of+exp%28-x^2-y^2%29).
+
+The final result doesn't look as nice as I had hoped. Possibly this is because raindrops are rarely perfectly round, as they are in my demo. Also, metaballs are obviously not an exact description of water droplets (the details of the geometry of water droplets caused by surface tension is somewhat hard). 
+
+My raindrops demo uses the public-domain image available [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Matanaka_-_Granary,_Privy_%26_Schoolhouse.jpg). 
+
+CSS3 Pistons
+---------
+
+Today I also made [isometric CSS3 Pistons](pistoncraft3) for fun.

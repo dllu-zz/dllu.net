@@ -1,6 +1,6 @@
 New website and other new things.
 =========
-I made a new website! After being in beta for 8 months, I'm tired of having it be in beta and have replaced my original site with the new one. Unfortunately, this website does not work on browsers without Javascript. I will generate [the static version](http://static.dllu.net) whenever I think of an elegant way of doing so.
+I made a new website! After being in beta for 8 months, I'm tired of having it be in beta and have replaced my original site with the new one. Unfortunately, this website does not work on browsers without Javascript. I will generate [the static version](http://www.dllu.net/s/) whenever I think of an elegant way of doing so.
 
 The new site has several interesting features:
 
