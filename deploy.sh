@@ -1,6 +1,6 @@
 cd blog
-./compile.py
+python compile.py
 cd ..
-./genstatic.py
+python genstatic.py
 rsync -r --exclude=\.* . ~/website/static
 appcfg.py update ~/website

@@ -1,6 +1,6 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
-import os
+import os, codecs
 from bs4 import BeautifulSoup
 def renderstatic(path, html, index):
     children = os.listdir(path)
@@ -17,7 +17,8 @@ def renderstatic(path, html, index):
             if not os.path.exists(spath):
                 os.mkdir(spath)
         # bad
-        page = index.replace('<!--area for content-->', html+'<div class="content-inside">'+(open(os.path.join(path, 'main.html'), 'r').read())+'</div>')
+        page = index.replace('<!--area for content-->', 
+            html+'<div class="content-inside">'+(codecs.open(os.path.join(path, 'main.html'), 'r','utf-8').read())+'</div>')
         page = page.replace('href="#', 'href="s/')
         page = page.replace('href="', 'href="'+ups+'/../')
         page = page.replace('href="'+ups+'/../http://', 'href="http://')
@@ -35,18 +36,20 @@ def renderstatic(path, html, index):
         page = page.replace('<div id="breadcrumbs">', '<div id="breadcrumbs">'+bc)
         spath = os.path.join(spath, 'index.html')
         print(spath, path, ups)
-        f = open(spath, 'w')
+        f = codecs.open(spath, 'w','utf-8')
         f.write(page)
         f.close()
 
     if 'nav.html' in children:
-        html += '<div class="content-inside">'+(open(os.path.join(path, 'nav.html'), 'r').read())+'</div>'
+        navstuff = codecs.open(os.path.join(path, 'nav.html'), 'r', 'utf-8').read()
+        if len(navstuff)>1:
+            html += '<div class="content-inside">'+navstuff+'</div>'
         for child in children:
             if os.path.isdir(os.path.join(path, child)):
                 renderstatic(os.path.join(path, child), html, index)
 
 def main():
-    index = open('index.html','r').read()
+    index = codecs.open('index.html','r','utf-8').read()
     soup = BeautifulSoup(index)
     soup.find('script').extract()
     soup.find(attrs={'id':'javascript-alert'}).extract()
