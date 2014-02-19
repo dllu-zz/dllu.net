@@ -3,7 +3,7 @@ Global Game Jam 2014.
 
 ![Henry Chee, Carolyn Shen, and Daniel Lu](http://i.imgur.com/rkjcQGY.jpg)
 
-Over the weekend my team and I made a game based on [visibility polygons](https://code.google.com/p/visibility-polygon-js/). It is a top-down shooter game where one can throw flashbangs (i.e. pass divine judgement) or fire bullets at enemies. A flashbang explodes after a certain amount of time and stuns all enemies within its line of sight. Except the first level, the player can only see that which is within its line of sight. The goal is to find the exit for the level, denoted by a square. 
+Over the weekend my team and I made a game based on [visibility polygons](http://code.google.com/p/visibility-polygon-js/). It is a top-down shooter game where one can throw flashbangs (i.e. pass divine judgement) or fire bullets at enemies. A flashbang explodes after a certain amount of time and stuns all enemies within its line of sight. Except the first level, the player can only see that which is within its line of sight. The goal is to find the exit for the level, denoted by a square. 
 
 The game is all made in Javascript/html5 canvas. Apart from the visibility polygon library and jQuery, no external libraries were used. We made the game engine entirely from scratch.
 

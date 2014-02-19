@@ -27,6 +27,7 @@ def renderstatic(path, html, index):
         page = page.replace('="dllu.', '="'+ups+'/../dllu.')
         page = page.replace('src="', 'src="'+ups+'/../')
         page = page.replace('src="'+ups+'/../http://', 'src="http://')
+        page = page.replace('src="'+ups+'/../https://', 'src="https://')
         page = page.replace('src="'+ups+'/..///', 'src="//')
         page = page.replace('<img', '<img class="loaded"')
         page = page.replace('<title>dllu', '<title>dllu'+path[1:])
