@@ -20,17 +20,6 @@ a:hover {
     text-decoration: underline;
 }
 
-img {
-    opacity: 0;
-    transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -webkit-transition: all 0.2s ease-in-out;
-}
-
-img.loaded {
-    opacity: 1;
-}
-
 #javascript-alert {
     width: 100%;
     height: 50px;
