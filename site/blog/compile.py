@@ -51,7 +51,7 @@ def main(prog_args):
 			blog_out = open(os.path.join(b,'main.html'),'w')
 			blog_out.write(html)
 			title = blog_in_html.split('</h1>')[0].split('<h1>')[1]
-			h_main += """<a href="%s"><div class="portfoliotile text"><p>%s</p></div><div class="caption">%s</div></a>""" % (b, title, parsedate(b))
+			h_main += """<a href="%s/"><div class="portfoliotile text"><p>%s</p></div><div class="caption">%s</div></a>""" % (b, title, parsedate(b))
 			#h_nav += """<a href="%s"><div class="caption">%s</div></a>""" % (b, parsedate(b))
 			rss += """
 			<item>

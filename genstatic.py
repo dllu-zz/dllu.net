@@ -22,7 +22,7 @@ def renderstatic(path, html, index):
         page = page.replace('<title>dllu', '<title>dllu'+path[1:])
         bc = ''
         for crumb in breadcrumbs:
-            bc += '<a href="/' + crumb + '">' + os.path.split(crumb)[1] + '</a>'
+            bc += '<a href="/' + crumb + '/">' + os.path.split(crumb)[1] + '</a>'
         page = page.replace('<div id="breadcrumbs">', '<div id="breadcrumbs">'+bc)
         spath = os.path.join(spath, 'index.html')
         print(spath, path)
