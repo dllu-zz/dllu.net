@@ -14,6 +14,6 @@ $(document).ready( function() {
 recolorblog = function() {
     // console.log('coloring...');
     $('.portfoliotile.text').each(function(){
-        $(this).css({'background-color':'rgb('+~~(Math.random()*20+190)+','+~~(Math.random()*25+200)+','+~~(Math.random()*50+200)+')'});
+        $(this).css({'background-color':'rgb('+~~(Math.random()*25+200)+','+~~(Math.random()*25+200)+','+~~(Math.random()*50+200)+')'});
     });
 }
