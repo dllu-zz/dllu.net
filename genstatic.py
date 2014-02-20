@@ -27,6 +27,8 @@ def renderstatic(path, html, index):
         spath = os.path.join(spath, 'index.html')
         print(spath, path)
         f = codecs.open(spath, 'w','utf-8')
+        soup = BeautifulSoup(page)
+        page = soup.prettify(formatter='minimal')
         f.write(page)
         f.close()
     if 'nav.html' in children:
