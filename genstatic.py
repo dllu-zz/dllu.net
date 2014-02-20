@@ -19,7 +19,7 @@ def renderstatic(path, html, index):
         # bad
         page = index.replace('<!--area for content-->', 
             html+'<div class="content-inside">'+(codecs.open(os.path.join(path, 'main.html'), 'r','utf-8').read())+'</div>')
-        page = page.replace('<title>dllu', '<title>dllu'+path[1:])
+        page = page.replace('<title>dllu', '<title>dllu'+path[5:])
         bc = ''
         for crumb in breadcrumbs:
             bc += '<a href="/' + crumb + '/">' + os.path.split(crumb)[1] + '</a>'

@@ -6,7 +6,7 @@ body,h1,h2,h3,p,quote,small,form,input,ul,li,ol,label,section {
 
 body {
     background-color: #fdfdfd;
-    min-width: 400px;
+    min-width: 320px;
 }
 
 a, a:visited {
@@ -18,19 +18,6 @@ a, a:visited {
 a:hover {
     color: #5af;
     text-decoration: underline;
-}
-
-#javascript-alert {
-    width: 100%;
-    height: 50px;
-    padding: 20px 20px 20px 20px;
-    line-height: 50px;
-    vertical-align: center;
-    font-size: 20px;
-    color: #333;
-    background-color: #ccc;
-    border-bottom: 1px solid #aaa;
-    text-align: center;
 }
 
 .logo {
@@ -185,7 +172,7 @@ a:hover {
     color: #333;
 }
 
-#content>.content-inside>.nav {
+.nav {
     min-width: 460px;
     height: 50px;
     text-align: center;
@@ -196,7 +183,7 @@ a:hover {
     z-index: 2;
 }
 
-#content>.content-inside>.nav>a {
+.nav>a {
     display: inline-block;
     height: 48px;
     width: 10%;
@@ -213,7 +200,7 @@ a:hover {
     -webkit-transition: all 0.1s ease-in-out;
 }
 
-#content>.content-inside>.nav>a:hover {
+.nav>a:hover {
     text-decoration: none;
     /*background-color: #fff;*/
     border-bottom: 2px solid #5af;
@@ -221,51 +208,51 @@ a:hover {
     /*box-shadow: 0 0 8px rgba(0,0,0,0.2);*/
 }
 
-#content>.content-inside>.nav>a.selected {
+.nav>a.selected {
     border-bottom: 2px solid #5af;
     /*box-shadow: inset 0 0 8px rgba(0,0,0,0.2);*/
 }
 
 @media screen and (max-width: 1200px) {
-    #content>.content-inside>.nav {
+    .nav {
         margin-top: 50px;
     }
 }
 
 /* porfolio */
 
-#content>.content-inside>.portfolio {
+.portfolio {
     background-color: #1e1e1e;
     text-align: center;
     font-size: 0px;
-    padding: 10px;
+    padding: 10px 0 10px 0;
     /*max-width: 1160px;*/
     margin: 0 auto;
 }
 
-#content>.content-inside>.portfolio a {
+.portfolio a {
     display: inline-block;
-    margin: 16px;
+    margin: 12px;
     line-height: 258px;
     width: 258px;
     height: 288px;
     overflow: hidden;
     position: relative;
 }
-#content>.content-inside>.portfolio a>.portfoliotile {
+.portfolio a>.portfoliotile {
     height: 256px;
     width: 256px;
     border: 1px solid #111;
     overflow: hidden;
     background-color: #fdfdfd;
 }
-#content>.content-inside>.portfolio a>.portfoliotile img {
+.portfolio a>.portfoliotile img {
     width: 256px;
     height: 256px;
     border: 0;
 }
 
-#content>.content-inside>.portfolio a>.portfoliotile.text {
+.portfolio a>.portfoliotile.text {
     display: table;
     line-height: 30px;
     font-size: 30px;
@@ -276,14 +263,14 @@ a:hover {
     transition: 3s background-color ease-in-out;
 }
 
-#content>.content-inside>.portfolio a>.portfoliotile.text>p {
+.portfolio a>.portfoliotile.text>p {
     display: table-cell;
     vertical-align: middle;
     padding: 20px;
 }
 
 
-#content>.content-inside>.portfolio a>.caption {
+.portfolio a>.caption {
     position: absolute;
     top: 256px;
     text-align: center;
@@ -296,29 +283,29 @@ a:hover {
     z-index: 1;
 }
 
-#content>.content-inside>.portfolio a:hover {
+.portfolio a:hover {
     text-decoration: none;
 }
 
-#content>.content-inside>.portfolio a:hover>.caption {
+.portfolio a:hover>.caption {
     text-decoration: none;
     color: #5af;
 }
 
-#content>.content-inside>.portfolio a.selected>.caption {
+.portfolio a.selected>.caption {
     color: #f9f9f9;
     font-weight: bold;
 }
 
 /* text */
 
-#content>.content-inside>section {
+section {
     padding: 30px 0px 20px 0px;
 }
-#content>.content-inside>section:not(:last-child) {
+section:not(:last-child) {
     border-bottom: 1px solid #ccc;
 }
-#content>.content-inside>section img {
+section img {
     display: block;
     max-width: 800px;
     width: 80%;
@@ -326,59 +313,59 @@ a:hover {
     /*box-shadow: 0px 0px 8px rgba(0,0,0,0.2);*/
     border: 1px solid #888;
 }
-#content>.content-inside>section.expo {
+section.expo {
     font-style: italic;
 }
-#content>.content-inside>section>p,
-#content>.content-inside>section>h1,
-#content>.content-inside>section>h2,
-#content>.content-inside>section>h3, 
-#content>.content-inside>section>ul {
+section>p,
+section>h1,
+section>h2,
+section>h3, 
+section>ul {
     display: block;
     max-width: 800px;
     width: 80%;
     margin: 0 auto;
-    padding: 6px 60px 16px 60px;
+    padding: 6px 0 16px 0;
 }
-#content>.content-inside>section>h1:first-child,
-#content>.content-inside>section>h2:first-child {
+section>h1:first-child,
+section>h2:first-child {
     padding-top: 6px;
 }
-#content>.content-inside>section>h1 {
-    padding: 16px 60px 16px 60px;
+section>h1 {
+    padding: 16px 0 16px 0;
     font-size: 45px;
     font-weight: normal;
 }
-#content>.content-inside>section>h2 {
-    padding: 16px 60px 16px 60px;
+section>h2 {
+    padding: 16px 0 16px 0;
     font-size: 20px;
     font-weight: bold;
 }
-#content>.content-inside>section>h3 {
+section>h3 {
     font-size: 18px;
     font-weight: normal;
     font-style: italic;
     color: #555;
 }
-#content>.content-inside>section ul li {
+section ul li {
     display: list-item;
-    padding: 5px 0px 5px 0px;
+    padding: 5px 0 5px 0;
 }
 
-#content>.content-inside>section pre {
+section pre {
     display: block;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     background-color: #eee;
     color: #235;
     font-family: monospace;
-    margin: 6px 0px 16px 0px;
+    margin: 6px 0 16px 0;
     font-size:14px;
 }
-#content>.content-inside>section pre>code {
+section pre>code {
     display: block;
     max-width: 800px;
     width: 80%;
     margin: 0 auto;
-    padding: 8px 60px 8px 60px;
+    padding: 8px 0 8px 0;
 }
