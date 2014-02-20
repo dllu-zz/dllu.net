@@ -1,7 +1,7 @@
 Customizing my desktop.
 =========
 
-![Screenshot](blog/blog/2013-06-23-134721_4480x1440_scrot.png)
+![Screenshot](/blog/blog/2013-06-23-134721_4480x1440_scrot.png)
 
 A few weeks ago I installed [Arch Linux](http://www.archlinux.org) on my desktop. It is quite pleasant to use. Yesterday I installed the [Luakit](http://mason-larobina.github.io/luakit/) browser. It is very fast and uses up very little screen real estate, which I like.
 
