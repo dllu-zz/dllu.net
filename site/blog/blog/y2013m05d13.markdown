@@ -1,7 +1,7 @@
 Voronoi diagram maze.
 =========
 
-tl;dr [here's the demo](/voronoimaze/)
+tl;dr [here's the demo](/voronoimaze)
 
 A maze is a [tree](http://en.wikipedia.org/wiki/Tree_\(graph_theory\)). Given any connected graph, a [maze-generation algorithm](http://en.wikipedia.org/wiki/Maze_generation_algorithm) finds a random spanning tree for that graph. Each node in the graph is a cell in the maze, and the edges represent walls. The algorithm I tend to use for generating mazes is a simple randomized depth-first search:
 

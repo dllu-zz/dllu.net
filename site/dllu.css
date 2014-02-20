@@ -273,7 +273,7 @@ a:hover {
     text-decoration: none;
     text-align: center;
     overflow-x: auto;
-    transition: 5s background-color ease-in-out;
+    transition: 3s background-color ease-in-out;
 }
 
 #content>.content-inside>.portfolio a>.portfoliotile.text>p {

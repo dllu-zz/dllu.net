@@ -3,7 +3,7 @@
 <p>Here's a <em>sketch</em> of a proof that 9 is the minimum amount needed. It is not very rigorous, but is meant to give a rough idea of such a proof might be laid out.</p>
 <h2>Claim 0: There exists an upper bound of 9 convex pentagons for the minimum solution.</h2>
 <p>There exists such a solution as per the following figure:</p>
-<p><img alt="Claim 0" src="blog/blog/triangle_claim0.svg" /></p>
+<p><img alt="Claim 0" src="/blog/blog/triangle_claim0.svg" /></p>
 <h2>Claim 1: For any interior vertex, there must be at least 3 convex pentagons touching it.</h2>
 <p>Otherwise, one of the polygons touching the vertex would not be convex.</p>
 <h2>Claim 2: A concave polygon minimally filled with convex pentagons must require at least as many convex pentagons as a convex polygon with the same number of convex vertices.</h2>
@@ -12,21 +12,21 @@
 <p><strong>Claim 2b:</strong> Conversely, <em>if a convex polygon minimally filled with convex pentagons requires N_i convex pentagons touching the ith edge, it requires the same number of convex pentagons as a concave polygon with the same number of convex vertices and with fewer than N_i concave vertices between the ith convex vertex and the i+1th convex vertex.</em></p>
 <h2>Claim 3: Each edge of the triangle minimally filled with convex pentagons must have more than one convex pentagon touching it.</h2>
 <p>Suppose that a convex pentagon shares an entire edge with the triangle. From Claim 2, the leftover space must require at least as many convex pentagons as a triangle. Hence, there is always a better solution with one fewer pentagon than a solution containing a convex pentagon sharing an edge with the triangle.</p>
-<p><img alt="Claim 3" src="blog/blog/triangle_claim3.svg" /></p>
+<p><img alt="Claim 3" src="/blog/blog/triangle_claim3.svg" /></p>
 <h2>Claim 4: We can without loss of generality assume that each vertex of a triangle minimally filled with convex pentagons touches only one convex pentagon.</h2>
 <p>This is equivalent to saying that we can without loss of generality assume that a convex pentagon touching a vertex of the triangle shares two (and not one) edges with the triangle. From Claim 2a, the remaining region requires fewer than or equal number of convex pentagons to fill if we make this assumption.</p>
-<p><img alt="Claim 4" src="blog/blog/triangle_claim4.svg" /></p>
+<p><img alt="Claim 4" src="/blog/blog/triangle_claim4.svg" /></p>
 <p>Note that we cannot generalise this to larger polygons... for example, a regular octagon can be divided minimally into 2 convex pentagons by cutting it from one vertex to the diametrically opposite vertex. The reason is that for larger polygons, multiple adjacent edges may touch only one convex pentagon, but that cannot happen with a triangle.</p>
 <h2>Claim 5: A convex quadrilateral minimally filled with convex pentagons must have at least one edge with more than two convex pentagons touching it.</h2>
 <p><strong>Case 1:</strong> Suppose that we have a single convex pentagon touching two adjacent edges of the quadrilateral, yielding a remainder region that is a triangle. By Claim 3 it is clear that there must exist edges with more than two convex pentagons touching it. The arrangement below, for example, cannot be minimal.</p>
-<p><img alt="Claim 5.1" src="blog/blog/triangle_claim5a.svg" /></p>
+<p><img alt="Claim 5.1" src="/blog/blog/triangle_claim5a.svg" /></p>
 <p><strong>Case 2:</strong> Suppose that we have no such convex pentagon that touches two adjacent edges of the quadrilateral. Using a similar logic to Claim 3, we see that if a single convex pentagon touches an entire edge of the quadrilateral, it would yield a remainder region that is, by Claim 2, the same as a quadrilateral and thus cannot be minimal. We also make the assumption in Claim 4. If two convex pentagons touch each edge, the remainder region is, again, by Claim 2, the same as a quadrilateral and cannot be minimal (see below picture). Thus at least one edge must have three convex pentagons touching it.</p>
-<p><img alt="Claim 5.2" src="blog/blog/triangle_claim5.svg" /></p>
+<p><img alt="Claim 5.2" src="/blog/blog/triangle_claim5.svg" /></p>
 <h2>Claim 6: Each edge of triangle minimally filled with convex pentagons must have more than two convex pentagon touching it.</h2>
 <p>Suppose that there are convex pentagon touching an edge of the triangle. In all cases the remainder area is essentially a quadrilateral. By Claim 2b and Claim 5, the remainder area with only one convex pentagon in the figure in Claim 4 requires the same or fewer convex pentagons than the remainder area in each of cases a, b, c in the figure below. Thus having two convex pentagon touching an edge is not minimal.</p>
-<p><img alt="Claim 6" src="blog/blog/triangle_claim6.svg" /></p>
+<p><img alt="Claim 6" src="/blog/blog/triangle_claim6.svg" /></p>
 <h2>Proposition 1: A triangle minimally filled with convex pentagons must contain 9 convex pentagons.</h2>
 <p>From Claim 6 we have that each edge must have at least 3 convex pentagons touching it. Thus we have at least six convex pentagons on the edges. The remainder area has more than two concavities and therefore cannot be the disjoint union of two convex pentagons (the number of concavities in the remainder area is even more if we have more convex pentagons touching the perimeter of the triangle).</p>
-<p><img alt="Proposition 1" src="blog/blog/triangle_claim7.svg" /></p>
+<p><img alt="Proposition 1" src="/blog/blog/triangle_claim7.svg" /></p>
 <p>Hence, we require at least 3 convex pentagons for the remainder area, such that the whole triangle requires at least 9 convex pentagons. But from Claim 0 we have that the upper bound is 9 convex pentagons. So we have obtained our desired result.</p>
 <p><strong>Quod erat demonstrandum</strong></p></section>

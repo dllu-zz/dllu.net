@@ -58,7 +58,7 @@ This problem gives you a bunch of circles and asks you to find the greatest numb
 
 We consider an angular sweep of a tangent line around a circle. Imagine a line that's tangent to a circle and rotates around it. For every other circle, we store the angle at which it enters the circle and the angle at which it exits the circle. We then sort all these events and iterate through them to find what is the maximum number of circles that the sweeping line passes through.
 
-![diagram](blog/blog/circlesweep.svg)
+![diagram](/blog/blog/circlesweep.svg)
 
 In the above diagram, we find the start and end event angles of a right-hand tangent line from the blue circle of radius _R_ to the green circle of radius _r_. Suppose that the distance between the circles is _d_. Then we can find the start and end angles by performing simple trigonometry on the two right angles with hypotenuse _d_ and opposite leg lengths _r+R_ and _r-R_. For the left-hand tangent lines, the picture is simply mirrored. A complete tangent line is a right-hand tangent line plus the left-hand tangent line rotated by _pi_.
 

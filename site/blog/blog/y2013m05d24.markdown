@@ -11,7 +11,7 @@ Inspired by this, I decided to make my own picture, but for the [swinging Atwood
 
 So, I plotted the time taken for the swinging Atwood's machine to flip over, as a function of its initial angle (horizontal axis, ranging from 0 on the left to pi on the right), and mass ratio (vertical axis, ranging linearly from 1 at the top to 3.4 on the bottom). The system is said to have "flipped over" if it crosses the theta = 0 line, i.e. the positive y axis. Here's the picture:
 
-![swinging Atwood's machine](blog/blog/FRACTAL_2400x2400s_small.png)
+![swinging Atwood's machine](/blog/blog/FRACTAL_2400x2400s_small.png)
 
 Unfortunately it doesn't look quite as fancy as the double pendulum one. Maybe it is because of my choice of colour scheme. Here, light blue means it flips over quickly; dark blue means it takes a long time to flip over; black means it never flips over. Notice the some jagged things around the edges. This is due to error in the RK4 numeric scheme I'm using. Because near the regions of sharp transition, the trajectory gets close to the origin, the radius becomes small and the equations of motion becomes close to singular. Naturally, computers (or maybe just me) are not good at dealing with singularities so it becomes imprecise.
 

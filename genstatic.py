@@ -6,12 +6,14 @@ def renderstatic(path, html, index):
     children = os.listdir(path)
     if 'main.html' in children:
         spath = 's'
+        _path = ''
         breadcrumbs = []
-        for p in os.path.split(path):
-            if p == '.' or p == '':
+        for p in path.split('/'):
+            if p == '.' or p == '' or p == 'site':
                 continue
             spath = os.path.join(spath, p)
-            breadcrumbs.append(spath)
+            _path = os.path.join(_path, p)
+            breadcrumbs.append(_path)
             if not os.path.exists(spath):
                 os.mkdir(spath)
         # bad
@@ -20,10 +22,10 @@ def renderstatic(path, html, index):
         page = page.replace('<title>dllu', '<title>dllu'+path[1:])
         bc = ''
         for crumb in breadcrumbs:
-            bc += '<a href="/' + crumb + '">' + os.path.split(crumb)[-1] + '</a>'
+            bc += '<a href="/' + crumb + '">' + os.path.split(crumb)[1] + '</a>'
         page = page.replace('<div id="breadcrumbs">', '<div id="breadcrumbs">'+bc)
         spath = os.path.join(spath, 'index.html')
-        print(spath, path, ups)
+        print(spath, path)
         f = codecs.open(spath, 'w','utf-8')
         f.write(page)
         f.close()
@@ -39,7 +41,7 @@ def main():
     index = codecs.open('index.html','r','utf-8').read()
     soup = BeautifulSoup(index)
     index = soup.prettify()
-    renderstatic('.', '', index)
+    renderstatic('site', '', index)
 
 if __name__ == '__main__':
     main()

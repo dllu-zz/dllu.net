@@ -3,12 +3,17 @@
 // I am not responsible for any grievous injury or disease sustained by viewing this code.
 
 $(document).ready( function() {
-    window.setInterval(recolorblog,5000);
+    recolorblog();
+    window.setInterval(recolorblog,4000);
+    if(window.location.hash.length > 2) {
+        var path = window.location.hash.split('#')[1];
+        window.location = window.location.origin + '/' + path;
+    }
 });
 
 recolorblog = function() {
-    console.log('coloring...');
+    // console.log('coloring...');
     $('.portfoliotile.text').each(function(){
-        $(this).css({'background-color':'rgb('+~~(Math.random()*30+200)+','+~~(Math.random()*30+200)+','+~~(Math.random()*30+200)+')'});
+        $(this).css({'background-color':'rgb('+~~(Math.random()*20+190)+','+~~(Math.random()*25+200)+','+~~(Math.random()*50+200)+')'});
     });
 }

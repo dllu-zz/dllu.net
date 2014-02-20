@@ -9,4 +9,4 @@ The game is all made in Javascript/html5 canvas. Apart from the visibility polyg
 
 You can read about the game at [the Global Game Jam website](http://globalgamejam.org/2014/games/road-salvation). 
 
-You can play the demo at [dllu.net/salvation](salvation). There is also a [map editor](salvation/mapeditor.html). The code is available at [github](https://github.com/dllu/bieber-drive). 
+You can play the demo at [dllu.net/salvation](/salvation). There is also a [map editor](/salvation/mapeditor.html). The code is available at [github](https://github.com/dllu/bieber-drive). 

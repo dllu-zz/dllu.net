@@ -39,7 +39,7 @@ int main() {
 <h3>Problem J</h3>
 <p>This problem gives you a bunch of circles and asks you to find the greatest number of circles that a single straight line can pass through. First, make the observation that we only need to consider lines tangent to at least one circle. Given a line that passes through some circles, you can always wiggle the line so that it is tangent to one of the circles that it intersects, without passing through any fewer circles.</p>
 <p>We consider an angular sweep of a tangent line around a circle. Imagine a line that's tangent to a circle and rotates around it. For every other circle, we store the angle at which it enters the circle and the angle at which it exits the circle. We then sort all these events and iterate through them to find what is the maximum number of circles that the sweeping line passes through.</p>
-<p><img alt="diagram" src="blog/blog/circlesweep.svg" /></p>
+<p><img alt="diagram" src="/blog/blog/circlesweep.svg" /></p>
 <p>In the above diagram, we find the start and end event angles of a right-hand tangent line from the blue circle of radius <em>R</em> to the green circle of radius <em>r</em>. Suppose that the distance between the circles is <em>d</em>. Then we can find the start and end angles by performing simple trigonometry on the two right angles with hypotenuse <em>d</em> and opposite leg lengths <em>r+R</em> and <em>r-R</em>. For the left-hand tangent lines, the picture is simply mirrored. A complete tangent line is a right-hand tangent line plus the left-hand tangent line rotated by <em>pi</em>.</p>
 <pre><code>#include &lt;iostream&gt;
 #include &lt;complex&gt;
