@@ -3,7 +3,7 @@ ACM ICPC PACNW 2013.
 
 In the [Association of Computing Machinery International Collegiate Programming Contest (Pacific Northwest Region), 2013](http://acmicpc-pacnw.org/), my team, UBC Wrong Answer, placed fourth. We were the Canada site champions.
 
-![Group Photo](blog/blog/ubc.jpg)
+![Group Photo](/blog/blog/ubc.jpg)
 
 In the above picture, I am on the far left. The rectilinear distortion makes me look wider than I really am. 
 
