@@ -10,6 +10,21 @@ window.onload = function() {
         window.location = window.location.origin + '/' + path;
     }
     resizeblog();
+    document.getElementById('switcher').onclick = function() {
+        var switcher = document.getElementById('switcher');
+        var portfolio = document.getElementsByClassName('portfolio');
+        if(switcher.className === 'list') {
+            switcher.className = '';
+            for(var i=0, _i = portfolio.length; i<_i; i++) {
+                portfolio[i].className = 'portfolio';
+            }
+        } else {
+            switcher.className = 'list';
+            for(var i=0, _i = portfolio.length; i<_i; i++) {
+                portfolio[i].className = 'portfolio list';
+            }
+        }
+    }
 };
 
 window.onresize = resizeblog = function() {
