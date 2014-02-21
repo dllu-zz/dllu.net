@@ -5,7 +5,7 @@ body,h1,h2,h3,p,quote,small,form,input,ul,li,ol,label,section {
 }
 
 body {
-    background-color: #fdfdfd;
+    background-color: #f9f9f9;
     min-width: 320px;
 }
 
@@ -150,7 +150,7 @@ a:hover, a:focus {
 
 #content>.content-inside {
     padding: none;
-    background-color: #fdfdfd;
+    background-color: #f9f9f9;
     border-bottom: 1px solid #ccc;
     color: #333;
 }
@@ -213,7 +213,6 @@ a:hover, a:focus {
     width: 256px;
     border: 1px solid #111;
     overflow: hidden;
-    background-color: #fdfdfd;
 }
 .portfolio a>.portfoliotile img {
     width: 256px;
@@ -222,6 +221,7 @@ a:hover, a:focus {
 }
 
 .portfolio a>.portfoliotile.text {
+    background-color: #ccc;
     display: table;
     line-height: 30px;
     font-size: 30px;
@@ -261,9 +261,69 @@ a:hover, a:focus {
     color: #5af;
 }
 
-.portfolio a.selected>.caption {
-    color: #f9f9f9;
-    font-weight: bold;
+.portfolio a>.description {
+    display: none;
+}
+
+/* list-style portfolio */
+.portfolio.list {
+    padding: 0;
+    /*background-color: #eee;*/
+}
+.portfolio.list a {
+    display: block;
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    height: 100px;
+    margin: 0 auto;
+    padding: 5px;
+    border-right: 2px solid #1e1e1e;
+    border-left: 2px solid #1e1e1e;
+}
+.portfolio.list a:hover {
+    background-color: #333;
+    border-right: 2px solid #5af;
+    border-left: 2px solid #5af;
+}
+.portfolio.list a>.portfoliotile {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: 98px;
+    height: 98px;
+}
+.portfolio.list a>.portfoliotile>img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 98px;
+    height: 98px;
+}
+.portfolio.list a>.caption {
+    position: absolute;
+    top: 5px;
+    left: 125px;
+    text-align: left;
+    padding: 0;
+}
+
+.portfolio.list a>.description {
+    position: absolute;
+    display: block;
+    z-index: 1;
+    color: #ccc;
+    top: 32px;
+    left: 125px;
+    width: 50%;
+    width: calc(90% - 125px);
+    height: 72px;
+    font-size: 13px;
+    line-height: 18px;
+    text-align: left;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow:ellipsis;
 }
 
 /* text */
@@ -343,7 +403,7 @@ section pre>code {
 #bloglist {
     position: absolute;
     width: 399px;
-    background-color: #fdfdfd;
+    background-color: #f9f9f9;
     border-right: 1px solid #ccc;
 }
 
