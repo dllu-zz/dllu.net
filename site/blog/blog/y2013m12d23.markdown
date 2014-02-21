@@ -1,7 +1,7 @@
 Raindrops.
 =========
 
-[![Raindrops](blog/blog/raindrops.jpg)](/raindrops)
+[![Raindrops](/blog/blog/raindrops.jpg)](/raindrops)
 
 I got quite inspired after seeing [CSS3 Raindrops on a Window](http://codepen.io/lbebber/pen/uIiJp). However, some commenters mentioned that raindrops that touch ought to merge together. This type of behaviour is easily accomplished using [metaballs](https://en.wikipedia.org/wiki/Metaballs). Hence, I made a [Javascript demo](/raindrops) that uses Gaussian metaballs with simulated refraction. The metaballs are defined as simply regions where the sum of the Gaussians is greater than some threshold.
 

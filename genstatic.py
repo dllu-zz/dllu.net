@@ -17,9 +17,10 @@ def renderstatic(path, html, index):
             if not os.path.exists(spath):
                 os.mkdir(spath)
         # bad
+        cont = codecs.open(os.path.join(path, 'main.html'), 'r','utf-8').read()
         page = index.replace('<!--area for content-->', 
-            html+'<div class="content-inside">'+(codecs.open(os.path.join(path, 'main.html'), 'r','utf-8').read())+'</div>')
-        page = page.replace('<title>dllu', '<title>dllu'+path[5:])
+            html+'<div class="content-inside">'+cont+'</div>')
+        page = page.replace('<title>\n   dllu', '<title>dllu'+path[4:])
         bc = ''
         for crumb in breadcrumbs:
             page = page.replace('href="/' + crumb + '/"', 'class="selected" href="/' + crumb + '/"')
