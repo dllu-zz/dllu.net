@@ -17,7 +17,7 @@ def main(prog_args):
 	f_main = open('main.html', 'w')
 	h_main = """<a href="/blog/rss.xml" id="rss"></a><div class="portfolio">"""
 	f_nav = open('nav.html', 'w')
-	h_nav = ''#"""<a href="blog/rss.xml" id="rss"></a>"""
+	h_nav = """<div id="bloglist">"""
 	f_rss = open('rss.xml', 'w')
 	rss = """<?xml version="1.0" ?>
 	<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
@@ -44,7 +44,7 @@ def main(prog_args):
 					raise e
 			blog_in = open(os.path.join('blog',blog),'r')
 			blog_in_html = m.convert(blog_in.read())
-			html = """<section id="%s">""" % b
+			html = """<section id="blogpost">"""
 			html += """<h3>%s</h3>""" % parsedate(b)
 			html += blog_in_html
 			html += """</section>"""
@@ -52,7 +52,7 @@ def main(prog_args):
 			blog_out.write(html)
 			title = blog_in_html.split('</h1>')[0].split('<h1>')[1]
 			h_main += """<a href="%s/"><div class="portfoliotile text"><p>%s</p></div><div class="caption">%s</div></a>""" % (b, title, parsedate(b))
-			#h_nav += """<a href="%s"><div class="caption">%s</div></a>""" % (b, parsedate(b))
+			h_nav += """<a href="/blog/%s/"><span class="title">%s</span><span class="date">%s</span></a>""" % (b, title, parsedate(b))
 			rss += """
 			<item>
 				<title>%s</title>
@@ -67,7 +67,7 @@ def main(prog_args):
 				time.strftime("%d %b %Y %H:%M:%S %z",parsedate2(b)),
 				"http://dllu.net/blog/"+b)
 			counter+=1
-	#h_nav += """</div>"""
+	h_nav += """</div>"""
 	h_main += """</div>"""
 	rss += """
 		</channel>

@@ -209,27 +209,6 @@ a:hover, a:focus {
     color: #5af;
 }
 
-@media screen and (max-width: 1200px) and (min-width:450px) {
-    #homespacer {
-        height: 50px;
-        background-color: #1e1e1e;
-    }
-    .nav {
-        padding-top: 50px;
-    }
-}
-
-@media screen and (max-width: 450px) {
-    #homespacer {
-        height: 50px;
-        background-color: #1e1e1e;
-    }
-    .nav {
-        padding-top: 50px;
-        height: 100px;
-    }
-}
-
 /* porfolio */
 
 .portfolio {
@@ -379,4 +358,135 @@ section pre>code {
     width: 80%;
     margin: 0 auto;
     padding: 8px 0 8px 0;
+}
+
+/* blog list */
+#bloglist {
+    position: absolute;
+    width: 400px;
+    background-color: #1e1e1e;
+}
+
+#bloglist>a {
+    display: block;
+    color: #eee;
+    padding-left: 30px;
+    height: 40px;
+    width: 368px;
+    line-height: 40px;
+    font-size: 14px;
+}
+#bloglist>a:hover, #bloglist>a:focus, #bloglist>a.selected {
+    border-right: 2px solid #5af;
+    color: #5af;
+    background-color: #333;
+    text-decoration: none;
+}
+#bloglist>a>.title {
+    display: inline-block;
+    width: 250px;
+}
+#bloglist>a>.date {
+    display: inline-block;
+    font-style: italic;
+    color: #ccc;
+    font-size: 12px;
+}
+
+#blogpost {
+    padding-left: 400px;
+}
+#blogpost>p,
+#blogpost>h1,
+#blogpost>h2,
+#blogpost>h3, 
+#blogpost>ul,
+#blogpost>pre>code{
+    margin: 0 120px;
+}
+
+/* responsive!!!!!!!! amazing!!!!!!! */
+
+@media screen and (max-width: 1200px) and (min-width:450px) {
+    #homespacer {
+        height: 50px;
+        background-color: #1e1e1e;
+    }
+    .nav {
+        padding-top: 50px;
+    }
+    #bloglist {
+        position: absolute;
+        width: 200px;
+        background-color: #1e1e1e;
+    }
+
+    #bloglist>a {
+        display: block;
+        color: #eee;
+        padding-left: 10px;
+        height: 40px;
+        width: 188px;
+        line-height: 20px;
+        font-size: 14px;
+    }
+    #bloglist>a:hover, #bloglist>a:focus, #bloglist>a.selected {
+        border-right: 2px solid #5af;
+        color: #5af;
+        background-color: #333;
+        text-decoration: none;
+    }
+    #bloglist>a>.title {
+        display: block;
+        width: 178px;
+        height: 20px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow:ellipsis;
+    }
+    #bloglist>a>.date {
+        display: block;
+        font-style: italic;
+        padding-left: 70px;
+        width: 108px;
+        height: 20px;
+        color: #ccc;
+        font-size: 10px;
+    }
+    #blogpost {
+        padding-left: 200px;
+    }
+    #blogpost>p,
+    #blogpost>h1,
+    #blogpost>h2,
+    #blogpost>h3, 
+    #blogpost>ul,
+    #blogpost>pre>code{
+        margin: 0 30px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    #bloglist {
+        display: none;
+    }
+    #blogpost {
+        padding-left: 0;
+    }
+    #blogpost>p,
+    #blogpost>h1,
+    #blogpost>h2,
+    #blogpost>h3, 
+    #blogpost>ul,
+    #blogpost>pre>code{
+        margin: 0 auto;
+    }
+    #homespacer {
+        height: 50px;
+        background-color: #1e1e1e;
+    }
+    .nav {
+        padding-top: 50px;
+        height: 100px;
+    }
 }
