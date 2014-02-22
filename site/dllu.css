@@ -182,7 +182,8 @@ a:hover, a:focus {
     -webkit-transition: all 0.1s ease-in-out;
 }
 
-.nav>a:hover, .nav>a.selected {
+.nav>a:hover, .nav>a:focus, .nav>a.selected {
+    outline: 0;
     text-decoration: none;
     border-bottom: 2px solid #5af;
     color: #5af;
@@ -199,7 +200,7 @@ a:hover, a:focus {
     margin: 0 auto;
 }
 
-.portfolio a {
+.portfolio li {
     display: inline-block;
     margin: 12px;
     line-height: 258px;
@@ -208,19 +209,20 @@ a:hover, a:focus {
     overflow: hidden;
     position: relative;
 }
-.portfolio a>.portfoliotile {
+.portfolio li .portfoliotile {
+    display: block;
     height: 256px;
     width: 256px;
     border: 1px solid #111;
     overflow: hidden;
 }
-.portfolio a>.portfoliotile img {
+.portfolio li .portfoliotile img {
     width: 256px;
     height: 256px;
     border: 0;
 }
 
-.portfolio a>.portfoliotile.text {
+.portfolio li .portfoliotile.text {
     background-color: #ccc;
     display: table;
     line-height: 30px;
@@ -232,14 +234,15 @@ a:hover, a:focus {
     transition: 3s background-color ease-in-out;
 }
 
-.portfolio a>.portfoliotile.text>p {
+.portfolio li .portfoliotile.text>span {
     display: table-cell;
     vertical-align: middle;
     padding: 20px;
 }
 
 
-.portfolio a>.caption {
+.portfolio li .caption {
+    display: block;
     position: absolute;
     top: 256px;
     text-align: center;
@@ -252,16 +255,21 @@ a:hover, a:focus {
     z-index: 1;
 }
 
-.portfolio a:hover {
-    text-decoration: none;
+.portfolio li,
+.portfolio li a,
+.portfolio li a .portfoliotile,
+.portfolio li a .portfoliotile span {
+    text-decoration: none !important;
+    outline: 0 !important;
 }
 
-.portfolio a:hover>.caption {
+.portfolio li:hover .caption,
+.portfolio a:focus .caption {
     text-decoration: none;
     color: #5af;
 }
 
-.portfolio a>.description {
+.portfolio li>.description {
     display: none;
 }
 
@@ -270,53 +278,61 @@ a:hover, a:focus {
     padding: 0;
     /*background-color: #eee;*/
 }
-.portfolio.list a {
+.portfolio.list li {
     display: block;
     position: relative;
     width: 100%;
     max-width: 800px;
     height: 100px;
     margin: 0 auto;
-    padding: 5px;
+    padding: 2px;
+}
+.portfolio.list li>a {
+    display: block;
+    position: relative;
+    width: 100%;
+    height: 100%;
     border-right: 2px solid #1e1e1e;
     border-left: 2px solid #1e1e1e;
+    margin: 0px -2px;
 }
-.portfolio.list a:hover {
+.portfolio.list a:hover,
+.portfolio.list a:focus {
     background-color: #333;
     border-right: 2px solid #5af;
     border-left: 2px solid #5af;
 }
-.portfolio.list a>.portfoliotile {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    width: 98px;
-    height: 98px;
-}
-.portfolio.list a>.portfoliotile>img {
+.portfolio.list li .portfoliotile {
     position: absolute;
     top: 0px;
     left: 0px;
     width: 98px;
     height: 98px;
 }
-.portfolio.list a>.caption {
+.portfolio.list li .portfoliotile>img {
     position: absolute;
-    top: 5px;
-    left: 125px;
+    top: 0px;
+    left: 0px;
+    width: 98px;
+    height: 98px;
+}
+.portfolio.list li .caption {
+    position: absolute;
+    top: 0px;
+    left: 120px;
     text-align: left;
     padding: 0;
 }
 
-.portfolio.list a>.description {
+.portfolio.list li .description {
     position: absolute;
     display: block;
     z-index: 1;
     color: #ccc;
-    top: 32px;
-    left: 125px;
+    top: 27px;
+    left: 120px;
     width: 50%;
-    width: calc(90% - 125px);
+    width: calc(90% - 120px);
     height: 72px;
     font-size: 13px;
     line-height: 18px;

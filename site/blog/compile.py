@@ -15,7 +15,7 @@ def parsedate2(date):
 def main(prog_args):
 	blogs = sorted(os.listdir('blog'), reverse=True)
 	f_main = open('main.html', 'w')
-	h_main = """<a href="/blog/rss.xml" id="rss"></a><div class="portfolio">"""
+	h_main = """<a href="/blog/rss.xml" id="rss"></a><ul class="portfolio">"""
 	f_nav = open('nav.html', 'w')
 	h_nav = """<div id="bloglist">"""
 	f_rss = open('rss.xml', 'w')
@@ -51,7 +51,7 @@ def main(prog_args):
 			blog_out = open(os.path.join(b,'main.html'),'w')
 			blog_out.write(html)
 			title = blog_in_html.split('</h1>')[0].split('<h1>')[1]
-			h_main += """<a href="%s/"><div class="portfoliotile text"><p>%s</p></div><div class="caption">%s</div></a>""" % (b, title, parsedate(b))
+			h_main += """<li><a href="%s/"><span class="portfoliotile text"><span>%s</span></span><span class="caption">%s</span></a></li>""" % (b, title, parsedate(b))
 			h_nav += """<a href="/blog/%s/"><span class="date">%s</span><span class="title">%s</span></a>""" % (b, parsedate(b), title)
 			rss += """
 			<item>
@@ -68,7 +68,7 @@ def main(prog_args):
 				"http://dllu.net/blog/"+b)
 			counter+=1
 	h_nav += """</div>"""
-	h_main += """</div>"""
+	h_main += """</ul>"""
 	rss += """
 		</channel>
 	</rss>"""

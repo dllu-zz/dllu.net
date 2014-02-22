@@ -10,7 +10,8 @@ window.onload = function() {
         window.location = window.location.origin + '/' + path;
     }
     resizeblog();
-    document.getElementById('switcher').onclick = function() {
+    var switcher = document.getElementById('switcher');
+    if(switcher) switcher.onclick = function() {
         var switcher = document.getElementById('switcher');
         var portfolio = document.getElementsByClassName('portfolio');
         if(switcher.className === 'list') {
@@ -39,9 +40,9 @@ window.onresize = resizeblog = function() {
 }
 
 recolorblog = function() {
-    // console.log('coloring...');
+    console.log('coloring...');
     blogposts = document.getElementsByClassName('text');
     for(var i=0, _i=blogposts.length; i<_i; i++) {
-        blogposts[i].style['background-color'] = 'rgb('+~~(Math.random()*25+200)+','+~~(Math.random()*25+200)+','+~~(Math.random()*50+200)+')';
+        blogposts[i].style.backgroundColor = 'rgb('+~~(Math.random()*25+200)+','+~~(Math.random()*25+200)+','+~~(Math.random()*50+200)+')';
     }
 }
