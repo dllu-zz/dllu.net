@@ -525,7 +525,9 @@ section pre>code {
 }
 
 #blogpost {
-    padding-left: 400px;
+    margin-left: 399px;
+    min-height: 800px;
+    border-left: 1px solid #ccc;
 }
 #blogpost>p,
 #blogpost>h1,
@@ -576,7 +578,7 @@ section pre>code {
         width: 178px;
     }
     #blogpost {
-        padding-left: 200px;
+        margin-left: 199px;
     }
     #blogpost>p,
     #blogpost>h1,
@@ -593,7 +595,7 @@ section pre>code {
         display: none;
     }
     #blogpost {
-        padding-left: 0;
+        margin-left: 0;
     }
     #blogpost>p,
     #blogpost>h1,

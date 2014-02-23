@@ -10,7 +10,6 @@ window.onload = function() {
         var path = window.location.hash.split('#')[1];
         window.location = window.location.origin + '/' + path;
     }
-    resizeblog();
     var switcher = document.getElementById('switcher');
     if(switcher) switcher.onclick = function() {
         var switcher = document.getElementById('switcher');
@@ -28,17 +27,6 @@ window.onload = function() {
         }
     }
 };
-
-window.onresize = resizeblog = function() {
-    var bloglist = document.getElementById('bloglist'), blogpost = document.getElementById('blogpost');
-    if(bloglist && blogpost) {
-        bloglist.style['height'] = null;
-        blogpost.style['height'] = null;
-        var h = Math.max(bloglist.offsetHeight, blogpost.offsetHeight)+1;
-        bloglist.style['height'] = h + 'px';
-        blogpost.style['height'] = (h - 51) + 'px';
-    }
-}
 
 recolorblog = function() {
     var blogposts = document.getElementsByClassName('text');
