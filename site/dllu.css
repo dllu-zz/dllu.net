@@ -143,9 +143,6 @@ a:hover, a:focus {
 
 #content {
     padding: none;
-    transition: opacity 0.1s ease-in-out;
-    -moz-transition: opacity 0.1s ease-in-out;
-    -webkit-transition: opacity 0.1s ease-in-out;
 }
 
 #content>.content-inside {
@@ -177,9 +174,6 @@ a:hover, a:focus {
     text-align: center;
     padding: 0px 10px 0px 10px;
     border-bottom: 2px solid rgba(85,136,255, 0);
-    transition: all 0.1s ease-in-out;
-    -moz-transition: all 0.1s ease-in-out;
-    -webkit-transition: all 0.1s ease-in-out;
 }
 
 .nav>a:hover, .nav>a:focus, .nav>a.selected {
@@ -234,7 +228,8 @@ a:hover, a:focus {
     transition: 3s background-color ease-in-out;
 }
 
-.portfolio li .portfoliotile.text>span {
+.portfolio li .portfoliotile.text>span,
+.portfolio:not(.list) li .description>span {
     display: table-cell;
     vertical-align: middle;
     padding: 20px;
@@ -269,8 +264,30 @@ a:hover, a:focus {
     color: #5af;
 }
 
-.portfolio li>.description {
-    display: none;
+.portfolio:not(.list) li .description {
+    opacity: 0;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 258px;
+    height: 258px;
+    display: block;
+    z-index: 1;
+    display: table;
+    background-color: rgba(0,0,0,0.84);
+    transition: 0.2s opacity ease-in-out;
+    color: #eee;
+    text-decoration: none;
+    text-align: center;
+    overflow-x: auto;
+    line-height: 14px;
+    font-size: 14px;
+}
+
+.portfolio li:hover .description,
+.portfolio a:focus .description {
+    text-decoration: none;
+    opacity: 1;
 }
 
 /* list-style portfolio */
@@ -343,42 +360,42 @@ a:hover, a:focus {
 }
 
 /* button to toggle between list and normal portfolio */
-#switcherspace {
-    height: 100px;
-    background-color: #1e1e1e;
-}
 #switcher {
-    position: relative;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    z-index:100;
     margin: 0 auto;
-    width: 200px;
-    height: 100px;
+    width: 80px;
+    height: 40px;
+    margin: 5px;
     cursor: pointer;
 }
 #switcher:hover {
-    opacity: 0.9;
+    opacity: 0.8;
 }
 #switcher>.switchthumb {
     position: absolute;
-    width: 35px;
-    height: 35px;
+    width: 14px;
+    height: 14px;
     background-color: #5af;
 }
 #switcher.list>.switchthumb {
-    background-color: #ccc;
+    background-color: #888;
 }
 #switcher>.switchlist-0 {
     position: absolute;
-    left: 110px;
-    width: 20px;
-    height: 20px;
-    background-color: #ccc;
+    left: 44px;
+    width: 8px;
+    height: 8px;
+    background-color: #888;
 }
 #switcher>.switchlist-1 {
     position: absolute;
-    left: 140px;
-    width: 50px;
-    height: 10px;
-    background-color: #ccc;
+    left: 56px;
+    width: 20px;
+    height: 4px;
+    background-color: #888;
 }
 #switcher.list>.switchlist-0,
 #switcher.list>.switchlist-1 {
