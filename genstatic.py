@@ -30,6 +30,11 @@ def renderstatic(path, html, index):
         print(spath, path)
         f = codecs.open(spath, 'w','utf-8')
         soup = BeautifulSoup(page)
+        tiles = soup.findAll('span',attrs={'class':'portfoliotile'})
+        for tile in tiles:
+            im = tile.findChild('img')
+            if im is not None and not im.has_attr('alt'):
+                im.attrs['alt'] = tile.findNextSibling().text
         page = soup.prettify(formatter='minimal')
         f.write(page)
         f.close()

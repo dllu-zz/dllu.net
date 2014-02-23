@@ -1,6 +1,4 @@
 // dllu.js by dllu
-// You are free to copy this code without attribution, but this is very bad code. Use at your own risk.
-// I am not responsible for any grievous injury or disease sustained by viewing this code.
 
 window.onload = function() {
     recolorblog();
