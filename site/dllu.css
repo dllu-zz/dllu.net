@@ -466,8 +466,11 @@ section pre>code {
     background-color: #f9f9f9;
     border-right: 1px solid #ccc;
 }
-
-#bloglist>a {
+#bloglist>li {
+    height: 40px;
+    width: 399px;
+}
+#bloglist a {
     position: relative;
     display: block;
     color: #333;
@@ -477,16 +480,16 @@ section pre>code {
     font-size: 14px;
     margin-right: -1px;
 }
-#bloglist>a:hover, #bloglist>a:focus, #bloglist>a.selected {
+#bloglist a:hover, #bloglist a:focus, #bloglist a.selected {
     border-right: 2px solid #38d;
     color: #38d;
     background-color: #eee;
     text-decoration: none;
 }
-#bloglist>a>span {
+#bloglist a>span {
     position: absolute;
 }
-#bloglist>a>.title {
+#bloglist a>.title {
     display: block;
     top: 0px;
     left: 140px;
@@ -496,7 +499,7 @@ section pre>code {
     overflow: hidden;
     text-overflow:ellipsis;
 }
-#bloglist>a>.date {
+#bloglist a>.date {
     display: block;
     top: 0px;
     left: 30px;
@@ -533,24 +536,26 @@ section pre>code {
     #bloglist {
         width: 199px;
     }
-
-    #bloglist>a {
+    #bloglist>li {
+        width: 199px;
+    }
+    #bloglist a {
         height: 40px;
         width: 198px;
         line-height: 20px;
         font-size: 14px;
     }
-    #bloglist>a:hover, #bloglist>a:focus, #bloglist>a.selected {
+    #bloglist a:hover, #bloglist a:focus, #bloglist a.selected {
         text-decoration: none;
     }
-    #bloglist>a>.title {
+    #bloglist a>.title {
         top: 20px;
         left: 40px;
         width: 158px;
         height: 20px;
         line-height: 20px;
     }
-    #bloglist>a>.date {
+    #bloglist a>.date {
         top: 0px;
         left: 10px;
         height: 20px;
