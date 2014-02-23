@@ -1,9 +1,12 @@
 // dllu.js by dllu
 
 window.onload = function() {
-    recolorblog();
-    window.setInterval(recolorblog,4000);
-    if(window.location.hash.length > 2) {
+    var blogposts = document.getElementsByClassName('text');
+    if(blogposts.length) {
+        recolorblog();
+        window.setInterval(recolorblog,4000);
+    }
+    if((window.location.pathname.length < 2) && window.location.hash.length > 2) {
         var path = window.location.hash.split('#')[1];
         window.location = window.location.origin + '/' + path;
     }
@@ -38,8 +41,7 @@ window.onresize = resizeblog = function() {
 }
 
 recolorblog = function() {
-    console.log('coloring...');
-    blogposts = document.getElementsByClassName('text');
+    var blogposts = document.getElementsByClassName('text');
     for(var i=0, _i=blogposts.length; i<_i; i++) {
         blogposts[i].style.backgroundColor = 'rgb('+~~(Math.random()*25+200)+','+~~(Math.random()*25+200)+','+~~(Math.random()*50+200)+')';
     }
