@@ -1,6 +1,6 @@
 #!/usr/bin/python
 
-import os, codecs
+import os, codecs, time
 from bs4 import BeautifulSoup
 def renderstatic(path, html, index):
     children = os.listdir(path)
@@ -51,6 +51,11 @@ def main():
     soup = BeautifulSoup(index)
     index = soup.prettify()
     renderstatic('site', '', index)
+    humans = codecs.open('humans.txt', 'r', 'utf-8').read()
+    humans = humans.replace('_UPDATE_', time.strftime("%d %b %Y", time.localtime()))
+    f = codecs.open('site/humans.txt', 'w', 'utf-8')
+    f.write(humans)
+    f.close()
 
 if __name__ == '__main__':
     main()
