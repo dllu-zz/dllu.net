@@ -235,7 +235,6 @@ a:hover, a:focus {
     padding: 20px;
 }
 
-
 .portfolio li .caption {
     display: block;
     position: absolute;
@@ -280,8 +279,8 @@ a:hover, a:focus {
     text-decoration: none;
     text-align: center;
     overflow-x: auto;
-    line-height: 14px;
-    font-size: 14px;
+    line-height: 20px;
+    font-size: 16px;
 }
 
 .portfolio li:hover .description,
