@@ -52,7 +52,7 @@ for(int x=0; x&lt;xsize; x++) {
         long double T = q[1], Told = q[1];
         for(i=0; i&lt;imax; i++) {
             T = q[1];
-            if( Told &lt; PI &amp;&amp; Told &gt; PI/2 &amp;&amp; T&gt;PI || 
+            if( Told &lt; PI &amp;&amp; Told &gt; PI/2 &amp;&amp; T&gt;PI ||
                 Told &gt; PI &amp;&amp; T &lt; PI &amp;&amp; T &gt; PI/2 || q[0] &lt;= 0) break;
             Told = q[1];
             rk4(q, mu, g);
@@ -72,4 +72,4 @@ for(int x=0; x&lt;xsize; x++) {
 user    9538m28.860s
 sys     6m33.584s
 </code></pre>
-<p>Yet I am still not satisfied with the level of accuracy. Oh well. The picture didn't look all that interesting anyway. </p></section>
+<p>Yet I am still not satisfied with the level of accuracy. Oh well. The picture didn't look all that interesting anyway.</p></section>

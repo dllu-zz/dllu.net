@@ -183,20 +183,19 @@ a:hover, a:focus {
 /* porfolio */
 
 .portfolio {
-    background-color: #1e1e1e;
+    background-color: #111;
     text-align: center;
     font-size: 0px;
     padding: 10px 0 10px 0;
-    /*max-width: 1200px;*/
     margin: 0 auto;
 }
 
 .portfolio li {
     display: inline-block;
-    margin: 12px;
-    line-height: 258px;
-    width: 258px;
-    height: 288px;
+    margin: 15px 30px;
+    line-height: 256px;
+    width: 256px;
+    height: 286px;
     overflow: hidden;
     position: relative;
 }
@@ -204,7 +203,6 @@ a:hover, a:focus {
     display: block;
     height: 256px;
     width: 256px;
-    border: 1px solid #111;
     overflow: hidden;
 }
 .portfolio li .portfoliotile img {
@@ -265,8 +263,8 @@ a:hover, a:focus {
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 258px;
-    height: 258px;
+    width: 256px;
+    height: 256px;
     display: block;
     z-index: 1;
     display: table;
@@ -305,8 +303,8 @@ a:hover, a:focus {
     position: relative;
     width: 100%;
     height: 100%;
-    border-right: 2px solid #1e1e1e;
-    border-left: 2px solid #1e1e1e;
+    border-right: 2px solid #111;
+    border-left: 2px solid #111;
     margin: 0px -2px;
 }
 .portfolio.list a:hover,
@@ -393,8 +391,8 @@ a:hover, a:focus {
     height: 4px;
     background-color: #888;
 }
-#switcher.list>.switchlist-0,
-#switcher.list>.switchlist-1 {
+#switcher.list>.switchlist-1,
+#switcher.list>.switchlist-0 {
     background-color: #5af;
 }
 
@@ -540,11 +538,14 @@ section pre>code {
 
 /* responsive!!!!!!!! amazing!!!!!!! */
 
-@media screen and (max-width: 1200px) and (min-width:450px) {
+@media screen and (max-width: 1300px) {
     #homespacer {
         height: 50px;
-        background-color: #1e1e1e;
+        background-color: #111;
     }
+}
+
+@media screen and (max-width: 1200px) and (min-width:450px) {
     .nav {
         padding-top: 50px;
     }
@@ -604,10 +605,6 @@ section pre>code {
     #blogpost>ul,
     #blogpost>pre>code{
         margin: 0 auto;
-    }
-    #homespacer {
-        height: 50px;
-        background-color: #1e1e1e;
     }
     .nav {
         padding-top: 50px;
