@@ -56,6 +56,12 @@ def main():
     f = codecs.open('site/humans.txt', 'w', 'utf-8')
     f.write(humans)
     f.close()
+    blogs = sorted(os.listdir('site/blog/'))[-1]
+    gae = codecs.open('site/main.py', 'r', 'utf-8').read()
+    gae = gae.replace('{LATEST}', blogs)
+    gae2 = codecs.open('main.py', 'w', 'utf-8')
+    gae2.write(gae)
+    gae2.close()
 
 if __name__ == '__main__':
     main()

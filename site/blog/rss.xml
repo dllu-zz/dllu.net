@@ -6,105 +6,105 @@
 			<link>http://dllu.net/blog</link>
 			<description>A blog of some things.</description>
 			<language>en-ca</language>
-			<lastBuildDate>Sat, 08 Mar 2014 16:39:04 -0800</lastBuildDate>
+			<lastBuildDate>Thu, 20 Mar 2014 17:48:24 -0700</lastBuildDate>
 			<generator>dllu secret blog engine</generator>
 			
 			<item>
 				<title>Global Game Jam 2014.</title>
 				<link>http://dllu.net/blog/y2014m01d26</link>
 				<description>Blog post of 26 January 2014</description>
-				<pubDate>26 Jan 2014 00:00:00 -0800</pubDate>
+				<pubDate>26 Jan 2014 00:00:00 +0000</pubDate>
 				<guid isPermaLink="true">http://dllu.net/blog/y2014m01d26</guid>
 			</item>
 			<item>
 				<title>Raindrops.</title>
 				<link>http://dllu.net/blog/y2013m12d23</link>
 				<description>Blog post of 23 December 2013</description>
-				<pubDate>23 Dec 2013 00:00:00 -0800</pubDate>
+				<pubDate>23 Dec 2013 00:00:00 +0000</pubDate>
 				<guid isPermaLink="true">http://dllu.net/blog/y2013m12d23</guid>
 			</item>
 			<item>
 				<title>Static version of the website.</title>
 				<link>http://dllu.net/blog/y2013m12d20</link>
 				<description>Blog post of 20 December 2013</description>
-				<pubDate>20 Dec 2013 00:00:00 -0800</pubDate>
+				<pubDate>20 Dec 2013 00:00:00 +0000</pubDate>
 				<guid isPermaLink="true">http://dllu.net/blog/y2013m12d20</guid>
 			</item>
 			<item>
 				<title>A busy term.</title>
 				<link>http://dllu.net/blog/y2013m12d01</link>
 				<description>Blog post of 1 December 2013</description>
-				<pubDate>01 Dec 2013 00:00:00 -0800</pubDate>
+				<pubDate>01 Dec 2013 00:00:00 +0000</pubDate>
 				<guid isPermaLink="true">http://dllu.net/blog/y2013m12d01</guid>
 			</item>
 			<item>
 				<title>ACM ICPC PACNW 2013.</title>
 				<link>http://dllu.net/blog/y2013m11d02</link>
 				<description>Blog post of 2 November 2013</description>
-				<pubDate>02 Nov 2013 00:00:00 -0800</pubDate>
+				<pubDate>02 Nov 2013 00:00:00 +0000</pubDate>
 				<guid isPermaLink="true">http://dllu.net/blog/y2013m11d02</guid>
 			</item>
 			<item>
 				<title>Branching vs Modulo.</title>
 				<link>http://dllu.net/blog/y2013m07d18</link>
 				<description>Blog post of 18 July 2013</description>
-				<pubDate>18 Jul 2013 00:00:00 -0800</pubDate>
+				<pubDate>18 Jul 2013 00:00:00 +0000</pubDate>
 				<guid isPermaLink="true">http://dllu.net/blog/y2013m07d18</guid>
 			</item>
 			<item>
 				<title>Customizing my desktop.</title>
 				<link>http://dllu.net/blog/y2013m06d23</link>
 				<description>Blog post of 23 June 2013</description>
-				<pubDate>23 Jun 2013 00:00:00 -0800</pubDate>
+				<pubDate>23 Jun 2013 00:00:00 +0000</pubDate>
 				<guid isPermaLink="true">http://dllu.net/blog/y2013m06d23</guid>
 			</item>
 			<item>
 				<title>ICPC Challenge Open.</title>
 				<link>http://dllu.net/blog/y2013m06d22</link>
 				<description>Blog post of 22 June 2013</description>
-				<pubDate>22 Jun 2013 00:00:00 -0800</pubDate>
+				<pubDate>22 Jun 2013 00:00:00 +0000</pubDate>
 				<guid isPermaLink="true">http://dllu.net/blog/y2013m06d22</guid>
 			</item>
 			<item>
 				<title>Swinging Atwood's machine fractal.</title>
 				<link>http://dllu.net/blog/y2013m05d24</link>
 				<description>Blog post of 24 May 2013</description>
-				<pubDate>24 May 2013 00:00:00 -0800</pubDate>
+				<pubDate>24 May 2013 00:00:00 +0000</pubDate>
 				<guid isPermaLink="true">http://dllu.net/blog/y2013m05d24</guid>
 			</item>
 			<item>
 				<title>Voronoi diagram maze.</title>
 				<link>http://dllu.net/blog/y2013m05d13</link>
 				<description>Blog post of 13 May 2013</description>
-				<pubDate>13 May 2013 00:00:00 -0800</pubDate>
+				<pubDate>13 May 2013 00:00:00 +0000</pubDate>
 				<guid isPermaLink="true">http://dllu.net/blog/y2013m05d13</guid>
 			</item>
 			<item>
 				<title>A hexagonal maze.</title>
 				<link>http://dllu.net/blog/y2013m05d04</link>
 				<description>Blog post of 4 May 2013</description>
-				<pubDate>04 May 2013 00:00:00 -0800</pubDate>
+				<pubDate>04 May 2013 00:00:00 +0000</pubDate>
 				<guid isPermaLink="true">http://dllu.net/blog/y2013m05d04</guid>
 			</item>
 			<item>
 				<title>Fitting convex pentagons in a triangle.</title>
 				<link>http://dllu.net/blog/y2013m05d01</link>
 				<description>Blog post of 1 May 2013</description>
-				<pubDate>01 May 2013 00:00:00 -0800</pubDate>
+				<pubDate>01 May 2013 00:00:00 +0000</pubDate>
 				<guid isPermaLink="true">http://dllu.net/blog/y2013m05d01</guid>
 			</item>
 			<item>
 				<title>Battlestation operational. Also, RSS feed.</title>
 				<link>http://dllu.net/blog/y2013m04d27</link>
 				<description>Blog post of 27 April 2013</description>
-				<pubDate>27 Apr 2013 00:00:00 -0800</pubDate>
+				<pubDate>27 Apr 2013 00:00:00 +0000</pubDate>
 				<guid isPermaLink="true">http://dllu.net/blog/y2013m04d27</guid>
 			</item>
 			<item>
 				<title>New website and other new things.</title>
 				<link>http://dllu.net/blog/y2013m04d22</link>
 				<description>Blog post of 22 April 2013</description>
-				<pubDate>22 Apr 2013 00:00:00 -0800</pubDate>
+				<pubDate>22 Apr 2013 00:00:00 +0000</pubDate>
 				<guid isPermaLink="true">http://dllu.net/blog/y2013m04d22</guid>
 			</item>
 		</channel>

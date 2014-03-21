@@ -145,7 +145,6 @@ a:hover, a:focus {
 #content>.content-inside {
     padding: 0;
     background-color: #f9f9f9;
-    border-bottom: 1px solid #ccc;
     color: #333;
 }
 
@@ -153,9 +152,8 @@ a:hover, a:focus {
     height: 50px;
     text-align: center;
     font-size: 0px;
-    margin-bottom: -1px;
     position: relative;
-    background-color: #333;
+    /*background-color: #333;*/
     z-index: 2;
 }
 
@@ -183,11 +181,12 @@ a:hover, a:focus {
 /* porfolio */
 
 .portfolio {
-    background-color: #111;
-    text-align: center;
+    /*background-color: #111;*/
+    text-align: left;
     font-size: 0px;
     padding: 10px 0 10px 0;
     margin: 0 auto;
+    max-width: 948px;
 }
 
 .portfolio li {
@@ -220,7 +219,6 @@ a:hover, a:focus {
     text-decoration: none;
     text-align: center;
     overflow-x: auto;
-    transition: 3s background-color ease-in-out;
 }
 
 .portfolio li .portfoliotile.text>span,
@@ -240,7 +238,7 @@ a:hover, a:focus {
     padding-top: 10px;
     line-height: 20px;
     font-size: 15px;
-    color: #eee;
+    color: #333;
     z-index: 1;
 }
 
@@ -269,7 +267,6 @@ a:hover, a:focus {
     z-index: 1;
     display: table;
     background-color: rgba(0,0,0,0.84);
-    transition: 0.2s opacity ease-in-out;
     color: #eee;
     text-decoration: none;
     text-align: center;
@@ -282,118 +279,6 @@ a:hover, a:focus {
 .portfolio a:focus .description {
     text-decoration: none;
     opacity: 1;
-}
-
-/* list-style portfolio */
-.portfolio.list {
-    padding: 0;
-    /*background-color: #eee;*/
-}
-.portfolio.list li {
-    display: block;
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    height: 100px;
-    margin: 0 auto;
-    padding: 2px;
-}
-.portfolio.list li>a {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 100%;
-    border-right: 2px solid #111;
-    border-left: 2px solid #111;
-    margin: 0px -2px;
-}
-.portfolio.list a:hover,
-.portfolio.list a:focus {
-    background-color: #333;
-    border-right: 2px solid #5af;
-    border-left: 2px solid #5af;
-}
-.portfolio.list li .portfoliotile {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 98px;
-    height: 98px;
-}
-.portfolio.list li .portfoliotile>img {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 98px;
-    height: 98px;
-}
-.portfolio.list li .caption {
-    position: absolute;
-    top: 0px;
-    left: 120px;
-    text-align: left;
-    padding: 0;
-}
-
-.portfolio.list li .description {
-    position: absolute;
-    display: block;
-    z-index: 1;
-    color: #ccc;
-    top: 27px;
-    left: 120px;
-    width: 50%;
-    width: calc(90% - 120px);
-    height: 72px;
-    font-size: 13px;
-    line-height: 18px;
-    text-align: left;
-    overflow: hidden;
-    white-space: normal;
-    text-overflow:ellipsis;
-}
-
-/* button to toggle between list and normal portfolio */
-#switcher {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    z-index:100;
-    margin: 0 auto;
-    width: 80px;
-    height: 40px;
-    margin: 5px;
-    cursor: pointer;
-}
-#switcher:hover {
-    opacity: 0.8;
-}
-#switcher>.switchthumb {
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    background-color: #5af;
-}
-#switcher.list>.switchthumb {
-    background-color: #888;
-}
-#switcher>.switchlist-0 {
-    position: absolute;
-    left: 44px;
-    width: 8px;
-    height: 8px;
-    background-color: #888;
-}
-#switcher>.switchlist-1 {
-    position: absolute;
-    left: 56px;
-    width: 20px;
-    height: 4px;
-    background-color: #888;
-}
-#switcher.list>.switchlist-1,
-#switcher.list>.switchlist-0 {
-    background-color: #5af;
 }
 
 
@@ -536,14 +421,12 @@ section pre>code {
     margin: 0 80px;
 }
 
-/* responsive!!!!!!!! amazing!!!!!!! */
 
-@media screen and (max-width: 1300px) {
-    #homespacer {
-        height: 50px;
-        background-color: #111;
-    }
+#homespacer {
+    height: 50px;
 }
+
+/* responsive!!!!!!!! amazing!!!!!!! */
 
 @media screen and (max-width: 1200px) and (min-width:450px) {
     .nav {

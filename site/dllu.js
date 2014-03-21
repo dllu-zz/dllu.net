@@ -26,8 +26,8 @@ window.onload = function() {
             }
         }
     }
-    adjustTiles();
-    window.onresize = adjustTiles;
+    // adjustTiles();
+    // window.onresize = adjustTiles;
 };
 
 recolorBlog = function() {
@@ -37,11 +37,11 @@ recolorBlog = function() {
     }
 }
 
-adjustTiles = function() {
-    var portfolios = document.getElementsByClassName('portfolio');
+// adjustTiles = function() {
+//     var portfolios = document.getElementsByClassName('portfolio');
 
-    for(var i=0, _i=portfolios.length; i<_i; i++) {
-        portfolios[i].style.paddingLeft = ~~(portfolios[i].offsetWidth - (~~(portfolios[i].offsetWidth/316))*316)/2 + 'px';
-        portfolios[i].style.textAlign = 'left';
-    }
-}
+//     for(var i=0, _i=portfolios.length; i<_i; i++) {
+//         portfolios[i].style.paddingLeft = ~~(portfolios[i].offsetWidth - (~~(portfolios[i].offsetWidth/316))*316)/2 + 'px';
+//         portfolios[i].style.textAlign = 'left';
+//     }
+// }
