@@ -7,7 +7,7 @@
     <li><a href="design/">
         <span class="portfoliotile"><img src="design.jpg" /></span>
         <span class="caption">Design</span>
-    </a></li>
+    </a></li><br/>
     <li><a href="programming/">
         <span class="portfoliotile"><img src="programming/hw4.png" /></span>
         <span class="caption">Programming</span>
@@ -17,7 +17,232 @@
         <span class="caption">Blog</span>
     </a></li>
 </ul>
-<section id="about" style="border-top: 1px solid #ccc;">
+<style>
+#wow {
+    width: 1000px;
+    height: 1000px;
+    background-color: #eee;
+    border: 1px solid #f00;
+    overflow: hidden;
+}
+#quaffle-holder {
+    margin: 100px;
+    width: 800px;
+    height: 800px;
+    perspective: 1000px;
+    perspective-origin: 50% 10%;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+#quaffle {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 400px;
+    height: 400px;
+    margin: -200px;
+    transform-origin: 50% 50% 50%;
+    transform-style: preserve-3d;
+    transform:
+                translate3d(400px, 500px, 0px)
+                rotateX(90deg)
+                rotateZ(-15deg);
+}
+#quaffle figure {
+    display: block;
+    position: absolute;
+    transform-origin: 50% 50% 50%;
+    transform-style: preserve-3d;
+    outline: 1px solid transparent;
+}
+#quaffle-diagonal {
+    width: 400px;
+    height: 400px;
+    margin: -200px;
+    transform:
+                translate3d(200px, 200px, 0px)
+                rotateZ(45deg);
+}
+#quaffle-plane-0 {
+    width: 360px;
+    height: 360px;
+    border: 6px solid #333;
+    margin: -186px;
+    transform:
+                translate3d(200px, 200px, 0px);
+}
+#quaffle-plane-1 {
+    width: 160px;
+    height: 160px;
+    background-color: #333;
+    margin: -80px;
+    transform:
+                translate3d(200px, 200px, 10px);
+}
+#quaffle-plane-2 {
+    width: 160px;
+    height: 160px;
+    background-color: #333;
+    margin: -80px;
+    transform:
+                translate3d(200px, 200px, -10px);
+}
+.quaffle-rotor {
+    width: 280px;
+    height: 280px;
+    border-radius: 140px;
+    margin: -140px;
+}
+#quaffle-0 {
+    transform:
+                translate3d(10px, 10px, 50px)
+                scaleX(-1)
+                rotateZ(45deg);
+}
+#quaffle-1 {
+    transform:
+                translate3d(380px, 10px, 50px)
+                rotateZ(45deg);
+}
+#quaffle-2 {
+    transform:
+                translate3d(10px, 380px, 50px)
+                rotateZ(45deg);
+}
+#quaffle-3 {
+    transform:
+                translate3d(380px, 380px, 50px)
+                scaleX(-1)
+                rotateZ(45deg);
+}
+#quaffle-x {
+    width: 480px;
+    height: 100px;
+    margin: -50px -280px;
+    border-left: 40px solid #333;
+    border-right: 40px solid #333;
+    transform:
+                translate3d(200px, 200px, 0px)
+                rotateX(90deg);
+}
+#quaffle-y {
+    width: 480px;
+    height: 100px;
+    margin: -50px -280px;
+    border-left: 40px solid #333;
+    border-right: 40px solid #333;
+    transform:
+                translate3d(200px, 200px, 0px)
+                rotateX(90deg)
+                rotateY(90deg);
+}
+#quaffle-x-0 {
+    width: 520px;
+    height: 20px;
+    margin: -10px -260px;
+    background-color: #333;
+    transform:
+                translate3d(200px, 200px, 0px)
+                rotateX(90deg);
+}
+#quaffle-y-0 {
+    width: 520px;
+    height: 20px;
+    margin: -10px -260px;
+    background-color: #333;
+    transform:
+                translate3d(200px, 200px, 0px)
+                rotateX(90deg)
+                rotateY(90deg);
+}
+.quaffle-rotor-inside {
+    width: 280px;
+    height: 280px;
+    margin: 0px;
+    /*background-color: rgba(0,0,0,0.2);*/
+}
+.quaffle-blade-0 {
+    width: 140px;
+    height: 140px;
+    border-radius: 70px;
+    margin: -70px;
+    background-color: #333;
+    transform: 
+                translate3d(70px, 140px, 0px)
+                rotateX(15deg)
+                scaleY(0.2);
+}
+.quaffle-blade-1 {
+    width: 140px;
+    height: 140px;
+    border-radius: 70px;
+    margin: -70px;
+    background-color: #333;
+    transform: 
+                translate3d(210px, 140px, 0px)
+                rotateX(-15deg)
+                scaleY(0.2);
+}
+
+@keyframes spin {
+  from {
+    transform: rotateZ(360deg);
+  }
+
+  to {
+    transform: rotateZ(0deg);
+  }
+}
+
+#quaffle-holder:hover .quaffle-rotor-inside {
+    animation-duration: 0.19s;
+    animation-name: spin;
+    animation-iteration-count: infinite;
+    animation-timing-function:linear;
+}
+</style>
+<script src="prefixfree.min.js"></script>
+<div id="wow">
+    <div id="quaffle-holder">
+        <div id="quaffle">
+            <figure id="quaffle-plane-0"></figure>
+            <figure id="quaffle-plane-1"></figure>
+            <figure id="quaffle-plane-2"></figure>
+            <figure id="quaffle-diagonal">
+                <figure id="quaffle-x"></figure>
+                <figure id="quaffle-x-0"></figure>
+                <figure id="quaffle-y"></figure>
+                <figure id="quaffle-y-0"></figure>
+            </figure>
+            <figure id="quaffle-0" class="quaffle-rotor">
+                <figure class="quaffle-rotor-inside">
+                    <figure class="quaffle-blade-0"></figure>
+                    <figure class="quaffle-blade-1"></figure>
+                </figure>
+            </figure>
+            <figure id="quaffle-1" class="quaffle-rotor">
+                <figure class="quaffle-rotor-inside">
+                    <figure class="quaffle-blade-0"></figure>
+                    <figure class="quaffle-blade-1"></figure>
+                </figure>
+            </figure>
+            <figure id="quaffle-2" class="quaffle-rotor">
+                <figure class="quaffle-rotor-inside">
+                    <figure class="quaffle-blade-0"></figure>
+                    <figure class="quaffle-blade-1"></figure>
+                </figure>
+            </figure>
+            <figure id="quaffle-3" class="quaffle-rotor">
+                <figure class="quaffle-rotor-inside">
+                    <figure class="quaffle-blade-0"></figure>
+                    <figure class="quaffle-blade-1"></figure>
+                </figure>
+            </figure>
+        </div>
+    </div>
+</div>
+<section id="about">
     <h1>Daniel L. Lu</h1>
     <p>I am an <a href="http://engphys.ubc.ca" target="_blank">Engineering Physics</a> student at the University of British Columbia. Currently, I am in my fifth year, specialising in the mechatronics option, which involves robotics and electromechanical systems. In addition to my engineering and programming projects, I also do some amateur 3D computer graphics, graphic design, and industrial design.</p>
 </section>
