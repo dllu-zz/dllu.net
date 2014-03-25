@@ -23,7 +23,7 @@ class MainHandler(webapp2.RequestHandler):
             path += '/'
         path = path.replace('/s/','/')
         if path[-6:] == '/blog/':
-            path += 'y2014m01d26/'
+            path += 'y2014m03d25/'
         self.redirect(path)
 
     def post(self): 

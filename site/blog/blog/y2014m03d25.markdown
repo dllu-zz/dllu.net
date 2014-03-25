@@ -1,0 +1,261 @@
+Aho-Corasick string matching algorithm.
+=========
+
+My friend recently wrote a [blog post about the Aho-Corasick string matching algorithm](http://carshen.github.io/data-structures/algorithms/2014/03/25/inuition-aho-corasick-algorithm.html). I got inspired by her post, and I got bored during class, so I coded up a simple Javascript demo that dynamically generates a visualization of the trie data structure.
+
+Type some words separated by spaces in the input field below and watch the diagram change in real time!
+
+<style>
+#dictionary {
+    width: 100%;
+}
+svg {
+    display: block;
+    margin: 0 auto;
+    max-height: 800px;
+    max-width: 800px;
+}
+</style>
+
+<input type="text" id="dictionary" value="a ab bc bca c caa"/>
+
+<div id="svg"></div>
+
+Each blue edge connects a node to its suffix in the trie, if it exists. Each green edge connects a node to its largest suffix that is a valid word, i.e. if you follow the blue edges upwards until you reach encounter the first node that is blue and not grey, you would have found the node connected via the green edge.
+
+To save the image, simply copy the SVG code from below, paste it into your favourite text editor, and save it as an SVG file, for example, `trie.svg`. 
+
+<pre><code id="svgcode"></code></pre>
+
+<script>
+var h = 0;
+function compute(strings) {
+    h = 0;
+    var trie = {'_root':1};
+    for(var i=0, _i=strings.length; i<_i; i++) {
+        var t = trie;
+        for(var j=0, _j=strings[i].length; j<_j; j++) {
+            if(t[strings[i][j]] === undefined) {
+                t[strings[i][j]] = {'_in':0};
+            }
+            if(j === _j-1) {
+                t[strings[i][j]]._in = 1;
+            }
+            t = t[strings[i][j]];
+        }
+    }
+    for(var i=0, _i=strings.length; i<_i; i++) {
+        var t = trie;
+        for(var j=0, _j=strings[i].length; j<_j; j++) {
+            t = t[strings[i][j]];
+            var suffix = strings[i].substr(1,j);
+            while(!get(suffix, trie)) {
+                suffix = suffix.substr(1);
+            }
+            t._blue = suffix;
+        }
+    }
+    for(var i=0, _i=strings.length; i<_i; i++) {
+        var t = trie;
+        for(var j=0, _j=strings[i].length; j<_j; j++) {
+            t = t[strings[i][j]];
+            t._green = t._blue;
+            while(t._green !== '' && get(t._green, trie)._in === 0) {
+                t._green = get(t._green, trie)._blue;
+            }
+        }
+    }
+    widths(trie);
+    xy(trie, 0, 1);
+    return trie;
+}
+function get(string, trie) {
+    var t = trie;
+    for(var j=0, _j=string.length; j<_j; j++) {
+        if(t[string[j]] === undefined) return false;
+        t = t[string[j]]
+    }
+    return t;
+}
+function widths(trie) {
+    if(size(trie) === 0) {
+        trie._width = 1;
+    } else {
+        trie._width = 0;
+        var keys = Object.keys(trie);
+        for(var i=0, _i=keys.length; i<_i; i++) {
+            if(keys[i][0] !== '_') {
+                widths(trie[keys[i]]);
+                trie._width += trie[keys[i]]._width;
+            }
+        }
+    }
+}
+function xy(trie, x, y) {
+    trie._x = x;
+    trie._y = y;
+    if(y > h) h = y;
+    if(size(trie) === 0) {
+    } else {
+        var _x = 0;
+        var keys = Object.keys(trie);
+        for(var i=0, _i=keys.length; i<_i; i++) {
+            if(keys[i][0] !== '_') {
+                xy(trie[keys[i]], x + _x, y + 2);
+                var w = trie[keys[i]]._width;
+                _x += 2*w;
+            }
+        }
+    }
+}
+function size(trie) {
+    var keys = Object.keys(trie);
+    var s = 0;
+    for(var i=0, _i=keys.length; i<_i; i++) {
+        if(keys[i][0] !== '_') {
+            s++;
+        }
+    }
+    return s;
+}
+function draw(trie) {
+    var w = trie._width;
+    var SIZE = 50;
+    var OFFSET = 5;
+    var svg = [ '<?xml version="1.0" encoding="UTF-8" standalone="no"?>',
+                '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">',
+                '<svg xmlns="http://www.w3.org/2000/svg"',
+                '    viewBox="0 0 ' + 2*w*SIZE + ' ' + (h+1)*SIZE + '"',
+                '    width="' + 2*w*SIZE + '" height="' + (h+1)*SIZE + '" preserveAspectRatio="xMidYMid meet">',
+                '    <defs>',
+                '        <marker id="TriangleK"',
+                '                viewBox="0 0 10 10" ',
+                '                refX="5" refY="5"',
+                '                markerWidth="3" ',
+                '                markerHeight="3"',
+                '                orient="auto"',
+                '                fill="#333"',
+                '                >',
+                '            <path d="M 0 0 L 10 5 L 0 10 z" />',
+                '        </marker>',
+                '        <marker id="TriangleB"',
+                '                viewBox="0 0 10 10" ',
+                '                refX="5" refY="5"',
+                '                markerWidth="3" ',
+                '                markerHeight="3"',
+                '                orient="auto"',
+                '                fill="#35d"',
+                '                >',
+                '            <path d="M 0 0 L 10 5 L 0 10 z" />',
+                '        </marker>',
+                '        <marker id="TriangleG"',
+                '                viewBox="0 0 10 10" ',
+                '                refX="5" refY="5"',
+                '                markerWidth="3" ',
+                '                markerHeight="3"',
+                '                orient="auto"',
+                '                fill="#3d5"',
+                '                >',
+                '            <path d="M 0 0 L 10 5 L 0 10 z" />',
+                '        </marker>',
+                '        <style type="text/css"><![CDATA[',
+                '            circle.in {',
+                '                stroke: #333;',
+                '                stroke-width: 2;',
+                '                fill: #5af;',
+                '            }',
+                '            circle.out {',
+                '                stroke: #333;',
+                '                stroke-width: 2;',
+                '                fill: #ccc;',
+                '            }',
+                '            line.edges {',
+                '                stroke: #333;',
+                '                stroke-width: 3;',
+                '                marker-end: url(#TriangleK);',
+                '            }',
+                '            line.blues {',
+                '                stroke: #35d;',
+                '                stroke-width: 3;',
+                '                opacity: 0.6;',
+                '                marker-end: url(#TriangleB);',
+                '            }',
+                '            line.greens {',
+                '                stroke: #3d5;',
+                '                stroke-width: 3;',
+                '                opacity: 0.6;',
+                '                marker-end: url(#TriangleG);',
+                '            }',
+                '            text {',
+                '                text-anchor: middle;',
+                '                dominant-baseline: central;',
+                '                font-size: 30px;',
+                '                font-family: sans-serif;',
+                '                fill: #333;',
+                '            }',
+                '        ]]></style>',
+                '    </defs>\n'].join('\n');
+    var edges = '';
+    var greens = '';
+    var blues = '';
+    var circles = '';
+    var chars = '';
+    var q = [trie];
+    while(q.length>0) {
+        console.log(t);
+        var t = q.shift();
+        var x = (t._x + t._width)*SIZE, y = t._y*SIZE;
+        circles += '\
+    <circle cx="' + x + '" cy="' + y + '" r= "' + (SIZE/2-OFFSET) + '" class="' + (t._in?'in':'out') + '"/>\n';
+        var keys = Object.keys(t);
+        for(var i=0, _i=keys.length; i<_i; i++) {
+            if(keys[i][0] !== '_') {
+                q.push(t[keys[i]]);
+                var xx = (t[keys[i]]._x + t[keys[i]]._width)*SIZE, yy = t[keys[i]]._y*SIZE;
+                var dx = x-xx, dy = y-yy, d = Math.sqrt(dx*dx + dy*dy);
+                dx /= d; dy /= d;
+                edges += '\
+    <line x1="' + x + '" y1="' + y + '" x2="' + (xx+SIZE/2*dx) + '" y2="' + (yy+SIZE/2*dy) + '" class="edges" />\n';
+                var green = get(t[keys[i]]._green, trie);
+                if(!green._root) {
+                    var xxg = (green._x + green._width)*SIZE, yyg = green._y*SIZE;
+                    var dx = xxg-xx, dy = yyg-yy, d = Math.sqrt(dx*dx + dy*dy);
+                    dx /= d; dy /= d;
+                    greens += '\
+    <line x2="' + rnd(xxg - OFFSET*dy-SIZE/2*dx) + '" y2="' + rnd(yyg + OFFSET*dx-SIZE/2*dy) + 
+        '" x1="' + rnd(xx - OFFSET*dy) + '" y1="' + rnd(yy + OFFSET*dx) + '" class="greens" />\n';
+                }
+                var blue = get(t[keys[i]]._blue, trie);
+                var xxb = (blue._x + blue._width)*SIZE, yyb = blue._y*SIZE;
+                dx = xxb-xx, dy = yyb-yy, d = Math.sqrt(dx*dx + dy*dy);
+                dx /= d; dy /= d;
+                blues += '\
+    <line x2="' + rnd(xxb + OFFSET*dy-SIZE/2*dx) + '" y2="' + rnd(yyb - OFFSET*dx-SIZE/2*dy) + 
+        '" x1="' + rnd(xx + OFFSET*dy) + '" y1="' + rnd(yy - OFFSET*dx) + '" class="blues" />\n';
+                chars += '\
+    <text x="' + xx + '" y="' + yy + '">' + keys[i] + '</text>\n';
+            }
+        }
+    }
+    svg += edges;
+    svg += blues;
+    svg += greens;
+    svg += circles;
+    svg += chars;
+    svg += '</svg>';
+    document.getElementById('svg').innerHTML = svg;
+    document.getElementById('svgcode').innerText = svg;
+    document.getElementById('svgcode').textContent = svg;
+    return svg;
+}
+function rnd(x) {
+    return (~~(x*1000))/1000;
+}
+document.getElementById('dictionary').onchange = 
+document.getElementById('dictionary').onkeyup = function() {
+    var strings = document.getElementById('dictionary').value.split(' ');
+    var trie = compute(strings);
+    draw(trie);
+}
+document.getElementById('dictionary').onkeyup();
+</script>

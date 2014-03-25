@@ -6,9 +6,23 @@
 			<link>http://dllu.net/blog</link>
 			<description>A blog of some things.</description>
 			<language>en-ca</language>
-			<lastBuildDate>Thu, 20 Mar 2014 20:22:51 -0700</lastBuildDate>
+			<lastBuildDate>Tue, 25 Mar 2014 15:15:57 -0700</lastBuildDate>
 			<generator>dllu secret blog engine</generator>
 			
+			<item>
+				<title>Aho-Corasick string matching algorithm.</title>
+				<link>http://dllu.net/blog/y2014m03d25</link>
+				<description>Blog post of 25 March 2014</description>
+				<pubDate>25 Mar 2014 00:00:00 +0000</pubDate>
+				<guid isPermaLink="true">http://dllu.net/blog/y2014m03d25</guid>
+			</item>
+			<item>
+				<title>CSS3 3D Quadrotor animation.</title>
+				<link>http://dllu.net/blog/y2014m03d21</link>
+				<description>Blog post of 21 March 2014</description>
+				<pubDate>21 Mar 2014 00:00:00 +0000</pubDate>
+				<guid isPermaLink="true">http://dllu.net/blog/y2014m03d21</guid>
+			</item>
 			<item>
 				<title>Global Game Jam 2014.</title>
 				<link>http://dllu.net/blog/y2014m01d26</link>

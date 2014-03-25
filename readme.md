@@ -17,4 +17,4 @@ Tools and libraries used:
 - jpegoptim
 - optipng
 
-Last update: 20 Mar 2014
+Last update: 25 Mar 2014
