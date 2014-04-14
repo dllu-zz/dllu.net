@@ -1,0 +1,347 @@
+<section id="blogpost"><h3>12 April 2014</h3><h1>Google Code Jam 2014 Qualification Round.</h1>
+<p>In the <a href="https://code.google.com/codejam/contest/2974486/dashboard">Google Code Jam Qualifiers</a>, I placed in <a href="https://code.google.com/codejam/contest/2974486/scoreboard#vf=1">20th position</a>, which is one of my best performances in a coding contest. Here, I shall attempt to present an analysis of the problems in an intuitive way.</p>
+<h2>Problem A: Magic Trick</h2>
+<p>In this <a href="https://code.google.com/codejam/contest/2974486/dashboard#s=p0">problem</a>, a magician gives two arrangements of a grid of 16 cards numbered 1 to 16. A volunteer thinks of a card on one of the rows in each of the two grids, and the magician identifies a card that is unique to both rows, if it exists. If there are multiple cards common to both rows, output "Bad magician!";  if there are no cards common to both rows, output "Volunteer cheated!"</p>
+<p>To do this, we simply count how many times each card has appeared in a row that the volunteer has picked. This can be stored in an integer array of size 16. If the count for a card is two, it has appeared in both rows. We iterate over those counts -- if there is one card that has a count of 2, then output that card; if there are multiple cards with a count of 2, then output "Bad magician!";  if there are no cards with a count of 2, output "Volunteer cheated!"</p>
+<pre><code>#include &lt;iostream&gt;
+
+using namespace std;
+
+int main() {
+    int N;
+    cin &gt;&gt; N;
+    for(int z=1; z&lt;=N; z++) {
+        int a; cin &gt;&gt; a;
+        int count[16] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+        for(int i=0; i&lt;4; i++) {
+            for(int j=0; j&lt;4; j++) {
+                int x; cin &gt;&gt; x;
+                if(i==a-1) count[x-1]++;
+            }
+        }
+        cin &gt;&gt; a;
+        for(int i=0; i&lt;4; i++) {
+            for(int j=0; j&lt;4; j++) {
+                int x; cin &gt;&gt; x;
+                if(i==a-1) count[x-1]++;
+            }
+        }
+        int two = 0, ans;
+        for(int i=0; i&lt;16; i++) {
+            if(count[i] == 2) {
+                two++;
+                ans = i+1;
+            }
+        }
+        if(two == 1) {
+            cout &lt;&lt; "Case #" &lt;&lt; z &lt;&lt; ": " &lt;&lt; ans &lt;&lt; endl;
+        } else if(two == 0) {
+            cout &lt;&lt; "Case #" &lt;&lt; z &lt;&lt; ": " &lt;&lt; "Volunteer cheated!" &lt;&lt; endl;
+        } else {
+            cout &lt;&lt; "Case #" &lt;&lt; z &lt;&lt; ": " &lt;&lt; "Bad magician!" &lt;&lt; endl;
+        }
+    }
+    return 0;    
+}
+</code></pre>
+<h2>Problem B: Cookie Clicker Alpha</h2>
+<p>In this <a href="https://code.google.com/codejam/contest/2974486/dashboard#s=p1">problem</a>, you start with 0 cookies and a production rate of 2 cookies per second. When you can afford to buy a new farm, you can choose either to buy a new farm, or to never buy a new farm again and just keep producing cookies. The goal is to reach <code>x</code> cookies. Observe that if you wanted to buy a certain number of farms, it is always better to buy them as soon as possible. </p>
+<ul>
+<li>Each farm produces cookies at rate <code>f</code>.</li>
+<li>Each farm costs <code>c</code> cookies.</li>
+<li>The goal is to get <code>x</code> cookies.</li>
+</ul>
+<p>Suppose that, it takes time <code>tf</code> to get <code>k</code> farms. Then, the cookie generation rate would be <code>r = 2 + k*f</code>, since you start out with a rate of <code>2</code> and each of the <code>k</code> farms contributes <code>f</code>. Immediately after getting the <code>k</code> farms, you have no cookies. Now, you can choose to either:</p>
+<ul>
+<li>Never buy a farm again and go for the <code>x</code> cookies. At a rate of <code>r(k) = 2 + k*f</code>, you'll need time <code>x/r(k)</code> to make <code>x</code> cookies. The total time is therefore <code>t(k) = tf(k) + x/r(k)</code>.</li>
+<li>Save up and buy another farm as soon as possible. At a rate of <code>r(k) = 2 + k*f</code>, you'll need time <code>c/r(k)</code> to get the farm. Therefore, the new <code>tf(k+1) = tf(k) + c/r(k)</code>. </li>
+</ul>
+<p>We now have a recursive definition of <code>tf</code> as a function of <code>k</code>. Obviously, <code>tf(0) = 0</code> at the start. So, we can just iterate our <code>k</code> starting at zero. At each <code>k</code>, we compute both <code>t(k)</code> and <code>tf(k+1)</code> using the above formulas. Now we just need the best <code>t(k)</code>. Since the function is convex, we can just increase <code>k</code> until there is no longer an improvement, i.e. it is no longer the case that <code>t(k) &lt; t(k-1)</code>. Here is the code:</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+
+using namespace std;
+
+int main() {
+    int N;
+    cin &gt;&gt; N;
+    for(int z=1; z&lt;=N; z++) {
+        cout &lt;&lt; "Case #" &lt;&lt; z &lt;&lt; ": ";
+        long double c, f, x; cin &gt;&gt; c &gt;&gt; f &gt;&gt; x;
+        long double t = x/2, _t, tf = 0, r = 2;
+        do {
+            _t = t;
+            tf = tf + c/r; // time to get the requisite number of farms
+            r += f;        // rate after getting this many farms
+            t = tf + x/r; // time to get x things
+        } while(_t &gt; t);
+        cout &lt;&lt; fixed &lt;&lt; setprecision(9) &lt;&lt; _t &lt;&lt; endl;
+    }
+    return 0;    
+}
+</code></pre>
+<p>Note that since the problem involves adding lots of small floating point numbers to a big floating point number, floating point additive error will accumulate severely. Using the 64-bit <code>long double</code> data type suffices to solve this problem within the desired precision.</p>
+<h2>Problem C: Minesweeper Master</h2>
+<p>In this <a href="https://code.google.com/codejam/contest/2974486/dashboard#s=p2">problem</a>, given dimensions <code>r, c</code> of a grid of the Minesweeper game, and a number <code>m</code> of mines, we wish to place the mines such that we can click somewhere to solve the game in one click (i.e. reveal all cells not containing mines). We output a grid where mines are denoted by the asterisk <code>'*'</code> and empty spots are denoted by the dot <code>'.'</code> and the click location is marked by the letter <code>'c'</code>. </p>
+<p>There are a number of cases.</p>
+<p><strong>Case 1</strong>: There are <code>m = r*c-1</code> mines. Then, there is only one spot without a mine and trivially clicking that spot solves it.</p>
+<p><strong>Case 2</strong>: There is either one column or one row. We can trivially solve this by outputting <code>c</code> followed by <code>r*c-m-1</code> dots, followed by <code>m</code> mines, e.g.</p>
+<pre><code>c............**************
+</code></pre>
+<p>or</p>
+<pre><code>c
+.
+.
+*
+*
+</code></pre>
+<p><strong>Case 3</strong>: There is more than one column and more than one row. Here are some observations: First, it's easier if we just click the top left corner. This is intuitive to me but no attempt to explain why this is the case. Second, the smallest number of empty spots you can have is 4. it looks like this:</p>
+<pre><code>c.******
+..******
+********
+********
+</code></pre>
+<p>Unlike some other people who have fancy dynamic programming solutions, mine is a simple greedy approach. First, we fill the grid with mines and initialize the position as shown above. Where possible, we grow the area of emptiness until we have exactly the correct number of mines. The way we grow the empty area is straightforward: we alternatingly grow rightwards along the first two rows and downwards along the first two columns. When it is no longer possible to grow like this, we just fill empty out the remaining region column by column, left to right, top to bottom. </p>
+<p>Here is an interactive demo of how it works:</p>
+<ul>
+<li><code>r</code>: <input type="text" id="r" value="13"/></li>
+<li><code>c</code>: <input type="text" id="c" value="21"/></li>
+<li><code>m</code>: <input type="text" id="m" value="100"/></li>
+</ul>
+<p><input type="button" id="restart" value="restart"></p>
+<pre><code id="minesweeper"></code></pre>
+
+<p>Can you see why it works?</p>
+<p>First, it avoids bad things like:</p>
+<pre><code>c...**     001?**
+...*** --&gt; 234***
+******     ******
+</code></pre>
+<p>since it grows the first two rows at the same time and the first two columns at the same time. Second, it avoids bad things like:</p>
+<pre><code>c....*     00002*
+.....* --&gt; 23213*
+***..*     ***??*
+</code></pre>
+<p>since it fills out the rest of the rows and columns in a monotonic way. Third, it can reach all possible number of mines except the imposible cases. It is harder to show this is true, but it seems intuitive to me.</p>
+<p>Here's my code:</p>
+<pre><code>#include &lt;iostream&gt;
+
+using namespace std;
+
+int main() {
+    int N;
+    cin &gt;&gt; N;
+    for(int z=1; z&lt;=N; z++) {
+        cout &lt;&lt; "Case #" &lt;&lt; z &lt;&lt; ": " &lt;&lt; endl;
+        int c, r, m; cin &gt;&gt; r &gt;&gt; c &gt;&gt; m;
+        int _ = c*r - m;
+        if(_ == 1) {
+            for(int i=0; i&lt;r; i++) {
+                for(int j=0; j&lt;c; j++) {
+                    cout &lt;&lt; ((i||j)?'*':'c');
+                } cout &lt;&lt; endl;
+            }
+        } else if(c == 1) {
+            cout &lt;&lt; "c\n";
+            for(int i=1; i&lt;_; i++) {
+                cout &lt;&lt; "." &lt;&lt; endl;
+            }
+            for(int i=_; i&lt;r; i++) {
+                cout &lt;&lt; '*' &lt;&lt; endl;
+            }
+        } else if(r == 1) {
+            cout &lt;&lt; "c";
+            for(int i=1; i&lt;_; i++) {
+                cout &lt;&lt; '.';
+            }
+            for(int i=_; i&lt;c; i++ ) {
+                cout &lt;&lt; '*';
+            } cout &lt;&lt; endl;
+        } else if(_ &lt; 4) {
+            cout &lt;&lt; "Impossible" &lt;&lt; endl;
+        } else {
+            char s[60][60];
+            for(int i=0; i&lt;r; i++) {
+                for(int j=0; j&lt;c; j++) {
+                    s[i][j] = '*';
+                }
+                s[i][c] = '\n';
+                s[i][c+1] = '\0';
+            }
+            s[0][0] = 'c';
+            s[0][1] = '.';
+            s[1][0] = '.';
+            s[1][1] = '.';
+            _-=4;
+            int zxcv = 0, x = 2, y = 2;
+            while(_ &gt; 1) {
+                zxcv = 0;
+                if(_ &gt; 1 &amp;&amp; x &lt; c) {
+                    s[0][x] = '.';
+                    s[1][x] = '.';
+                    x++;
+                    _-=2;
+                    zxcv = 1;
+                }
+                if(_ &gt; 1 &amp;&amp; y &lt; r) {
+                    s[y][0] = '.';
+                    s[y][1] = '.';
+                    y++;
+                    _-=2;
+                    zxcv = 1;
+                }
+                if(!zxcv) break;
+            }
+            for(int j=2; j&lt;x; j++) {
+                for(int i=2; i&lt;y; i++) {
+                    if(_ &gt; 0) {
+                        s[i][j] = '.';
+                        _--;
+                    } else {
+                        break;
+                    }
+                }
+            }
+            if(_ &gt; 0) {
+                cout &lt;&lt; "Impossible" &lt;&lt; endl;
+            } else
+            for(int i=0; i&lt;r; i++) {
+                cout &lt;&lt; s[i];
+            }
+        }
+    }
+
+    return 0;    
+}
+</code></pre>
+<h2>Problem D: Deceitful War</h2>
+<p>In this <a href="https://code.google.com/codejam/contest/2974486/dashboard#s=p3">problem</a>, Naomi and Ken play a game called War. They both start out with <code>n</code> items of weights between 0 and 1. Both players don't know their opponent's blocks' weights. On each move, Naomi selects a block and announces its weight. Then ken selects a block and weighs it against Naomi's block, on a balance scale. Whoever has the heavier block wins a point. Then both blocks are discarded. This is repeated <code>n</code> times in total. Naomi may try to deceive Ken by playing a game called Deceitful War. Here, Naomi knows all of Ken's blocks' weights, and she may lie about her block's weight when playing it (without revealing her deception).</p>
+<p>Ken's strategy is to play his lightest block that beats Naomi's block. </p>
+<p>Naomi's strategy is to play her blocks in increasing order. Hopefully, by the time Naomi reaches her heavier blocks, Ken would not have any more heavy blocks.</p>
+<p>Naomi's deceitful strategy is to again play in increasing order. If her lightest block is lighter than Ken's lightest block, she is going to lose, inevitably, so she would claim her block is of a weight just less than Ken's heaviest block. This would bait Ken into playing his heaviest block. If Naomi's lightest block is heavier than Ken's lightest block, she would claim it weights 0.9999 (or arbitrarily close to 1, the maximum weight). Sensing an inevitable loss, Ken would play his lightest block. </p>
+<p>The trick is to observe that Deceitful War is exactly the same as just War with the roles reversed -- i.e, Ken plays a block, announces its weight, and then Naomi selects her own block.</p>
+<p>Here is my code:</p>
+<pre><code>#include &lt;iostream&gt;
+#include &lt;algorithm&gt;
+
+using namespace std;
+
+int main() {
+    int N;
+    cin &gt;&gt; N;
+    for(int z=1; z&lt;=N; z++) {
+        cout &lt;&lt; "Case #" &lt;&lt; z &lt;&lt; ": ";
+        int n; cin &gt;&gt; n;
+        long double *x = new long double[n], *y = new long double[n];
+        for(int i=0; i&lt;n; i++) cin &gt;&gt; x[i];
+        for(int i=0; i&lt;n; i++) cin &gt;&gt; y[i];
+        sort(x, x+n);
+        sort(y, y+n);
+
+        int i=0, j=0;
+        for(; i&lt;n; i++, j++) {
+            if(j&gt;=n) break;
+            while(x[j] &lt; y[i] &amp;&amp; j &lt; n) j++;
+            if(j&gt;=n) break;
+            // cerr &lt;&lt; "       " &lt;&lt; x[j] &lt;&lt; " beats " &lt;&lt; y[i] &lt;&lt; endl;
+        }
+        cout &lt;&lt; i &lt;&lt; " ";
+
+        i=0, j=0;
+        for(; i&lt;n; i++, j++) {
+            if(j&gt;=n) break;
+            while(y[j] &lt; x[i] &amp;&amp; j &lt; n) j++;
+            if(j&gt;=n) break;
+            // cerr &lt;&lt; "       " &lt;&lt; y[j] &lt;&lt; " beats " &lt;&lt; x[i] &lt;&lt; endl;
+        }
+        cout &lt;&lt; n-i &lt;&lt; endl;
+    }
+
+    return 0;    
+}
+</code></pre>
+<p>Hope that helps!</p>
+<script>
+var grid = [];
+
+var I;
+
+function draw(remaining) {
+    if(remaining < 0) {
+        document.getElementById('minesweeper').innerHTML = 'Impossible!';
+        return;
+    }
+    var g = [];
+    for(var i=0, _i = grid.length; i<_i; i++) {
+        g[i] = grid[i].join('');
+    }
+    document.getElementById('minesweeper').innerHTML = g.join('\n') 
+        + '\n\nRemaining mines to clear: ' + remaining;
+}
+
+var r, c, remaining, x, y, ii, jj;
+
+function init() {
+    if(I) clearInterval(I);
+    grid = [];
+    r = parseInt(document.getElementById('r').value), 
+    c = parseInt(document.getElementById('c').value),
+    m = parseInt(document.getElementById('m').value);
+    if(r != r || c != c || m != m || r<=0 || c<=0 || m<=0 || m >= r*c) {
+        document.getElementById('minesweeper').innerHTML = 'Invalid input.';
+        return;
+    }
+    if(r == 1 || c == 1 || m == r*c-1) {
+        document.getElementById('minesweeper').innerHTML = 'See Cases 1 and 2.';
+        return;
+    }
+    for(var i=0; i<r; i++) {
+        grid[i] = [];
+        for(var j=0; j<c; j++) {
+            grid[i][j] = '*';
+        }
+    }
+    grid[0][0] = 'c';
+    grid[0][1] = grid[1][0] = grid[1][1] = '.';
+    remaining = r*c - m - 4;
+    x = y = ii = jj = 2;
+    draw(remaining);
+    I = setInterval(compute, 200);
+}
+
+function compute() {
+    if(remaining <= 0) return;
+    if(remaining > 1 && x < c && x < y) {
+        grid[0][x] = grid[1][x] = '.';
+        remaining -=2;
+        x++;
+    } else if (remaining > 1 && y < r) {
+        grid[y][0] = grid[y][1] = '.';
+        remaining -=2;
+        y++;
+    } else if(remaining > 1 && x < c) {
+        grid[0][x] = grid[1][x] = '.';
+        remaining -=2;
+        x++;
+    } else if(ii < y && jj < x) {
+        grid[ii++][jj] = '.';
+        remaining--;
+        if(ii >= y) {
+            ii = 2; jj++;
+        }
+    } else {
+        remaining = -999;
+    }
+    draw(remaining);
+    if(remaining <= 0) {
+        clearInterval(I);
+    }
+}
+
+document.getElementById('r').onchange = init;
+document.getElementById('c').onchange = init;
+document.getElementById('m').onchange = init;
+document.getElementById('restart').onclick  = init;
+
+init();
+</script></section>

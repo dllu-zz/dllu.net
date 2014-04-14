@@ -215,7 +215,7 @@ function draw(trie) {
                 var dx = x-xx, dy = y-yy, d = Math.sqrt(dx*dx + dy*dy);
                 dx /= d; dy /= d;
                 edges += '\
-    <line x1="' + x + '" y1="' + y + '" x2="' + (xx+SIZE/2*dx) + '" y2="' + (yy+SIZE/2*dy) + '" class="edges" />\n';
+    <line x1="' + x + '" y1="' + y + '" x2="' + rnd(xx+SIZE/2*dx) + '" y2="' + rnd(yy+SIZE/2*dy) + '" class="edges" />\n';
                 var green = get(t[keys[i]]._green, trie);
                 if(!green._root) {
                     var xxg = (green._x + green._width)*SIZE, yyg = green._y*SIZE;
