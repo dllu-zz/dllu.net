@@ -1,2 +1,16 @@
 <section id="blogpost"><h3>4 May 2013</h3><h1>A hexagonal maze.</h1>
-<p>I implemented a <a href="/hexmaze">hexagonal maze</a>. It uses my friend <a href="http://byronknoll.com">Byron's</a> <a href="https://code.google.com/p/visibility-polygon-js/">visibility polygon library</a>. The maze is generated using a method similar to the old <a href="/maze">maze</a>, and the solution path is computed using a similar method too. Each hexagonal maze cell has three walls since each edge touches two hexagons; and each hexagonal maze cell has two corners since each corner touches three hexagons. The maze generation algorithm is simply a randomized depth-first search. The parent of each maze cell is stored in an array so that, when computing the path between two points, we may start from both points and backtrack to the nearest common parent.</p></section>
+<p>I implemented a <a href="/hexmaze">hexagonal maze</a>. It uses my friend <a href="http://byronknoll.com">Byron's</a> <a href="https://code.google.com/p/visibility-polygon-js/">visibility polygon library</a>. The maze is generated using a method similar to the old <a href="/maze">maze</a>, and the solution path is computed using a similar method too. Each hexagonal maze cell has three walls since each edge touches two hexagons; and each hexagonal maze cell has two corners since each corner touches three hexagons. The maze generation algorithm is simply a randomized depth-first search. The parent of each maze cell is stored in an array so that, when computing the path between two points, we may start from both points and backtrack to the nearest common parent.</p>
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+		/* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+		var disqus_shortname = 'dllunet'; // required: replace example with your forum shortname
+
+		/* * * DON'T EDIT BELOW THIS LINE * * */
+		(function() {
+			var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+			dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+			(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+		})();
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+			</section>

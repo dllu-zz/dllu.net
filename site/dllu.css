@@ -413,6 +413,7 @@ section pre>code {
     border-left: 1px solid #ccc;
 }
 #blogpost>p,
+#blogpost>#disqus_thread,
 #blogpost>h1,
 #blogpost>h2,
 #blogpost>h3, 
@@ -465,6 +466,7 @@ section pre>code {
         margin-left: 199px;
     }
     #blogpost>p,
+    #blogpost>#disqus_thread,
     #blogpost>h1,
     #blogpost>h2,
     #blogpost>h3, 
@@ -482,6 +484,7 @@ section pre>code {
         margin-left: 0;
     }
     #blogpost>p,
+    #blogpost>#disqus_thread,
     #blogpost>h1,
     #blogpost>h2,
     #blogpost>h3, 
